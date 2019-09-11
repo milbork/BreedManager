@@ -1,54 +1,42 @@
 package com.breedmanager.entitis;
 
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotEmpty;
-
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table
+@Table(name = "breeder")
 public class Breeder {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty
     private String firstName;
 
-    @NotEmpty
     private String lastName;
 
-    @NotEmpty
     private String password;
 
-    @NotEmpty
-    private String confirmPassword;
-
-    @Email
-    @NotEmpty
     private String email;
 
-
-
-    @Email
-    @NotEmpty
-    private String confirmEmail;
-
-    @NotEmpty
     private String breedingName;
 
+    @OneToMany(mappedBy = "breeder", fetch = FetchType.LAZY)
+    private List<Dog> dogs;
+
+    @OneToMany(mappedBy = "breeder", fetch = FetchType.LAZY)
+    private List<Litter> litters;
     public Breeder() {
     }
 
-    public Breeder(String firstName, String lastName, String password, String confirmPassword, String email, String confirmEmail, String breedingName) {
+    public Breeder(String firstName, String lastName, String password, String email, String breedingName, List<Dog> dogs, List<Litter> litters) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
-        this.confirmPassword = confirmPassword;
         this.email = email;
-        this.confirmEmail = confirmEmail;
         this.breedingName = breedingName;
+        this.dogs = dogs;
+        this.litters = litters;
     }
 
     public String getFirstName() {
@@ -75,13 +63,6 @@ public class Breeder {
         this.password = password;
     }
 
-    public String getConfirmPassword() {
-        return confirmPassword;
-    }
-
-    public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
-    }
 
     public String getEmail() {
         return email;
@@ -91,13 +72,6 @@ public class Breeder {
         this.email = email;
     }
 
-    public String getConfirmEmail() {
-        return confirmEmail;
-    }
-
-    public void setConfirmEmail(String confirmEmail) {
-        this.confirmEmail = confirmEmail;
-    }
 
     public String getBreedingName() {
         return breedingName;
@@ -105,5 +79,29 @@ public class Breeder {
 
     public void setBreedingName(String breedingName) {
         this.breedingName = breedingName;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public List<Dog> getDogs() {
+        return dogs;
+    }
+
+    public void setDogs(List<Dog> dogs) {
+        this.dogs = dogs;
+    }
+
+    public List<Litter> getLitters() {
+        return litters;
+    }
+
+    public void setLitters(List<Litter> litters) {
+        this.litters = litters;
     }
 }

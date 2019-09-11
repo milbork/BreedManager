@@ -10,4 +10,6 @@ public interface RegistrationInterface {
 
     Breeder addBreeder(BreederDTO breeder);
     User addUser(UserDTO userDTO);
+    User findUserByEmail(String email);
+    Breeder findBreederByEmail(String email);
 }

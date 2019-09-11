@@ -1,8 +1,9 @@
 package com.breedmanager.entitis;
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table
+@Table(name = "user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -12,16 +13,18 @@ public class User {
     private String lastName;
     private String email;
     private String password;
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<Dog> dogs;
 
     public User() {
     }
 
-    public User(String firstName, String lastName, String password, String email) {
+    public User(String firstName, String lastName, String email, String password, List<Dog> dogs) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.password = password;
-
         this.email = email;
+        this.password = password;
+        this.dogs = dogs;
     }
 
     public String getFirstName() {
@@ -57,4 +60,19 @@ public class User {
         this.email = email;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public List<Dog> getDogs() {
+        return dogs;
+    }
+
+    public void setDogs(List<Dog> dogs) {
+        this.dogs = dogs;
+    }
 }

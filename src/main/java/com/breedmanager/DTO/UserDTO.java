@@ -13,24 +13,20 @@ public class UserDTO {
     @NotEmpty
     private String password;
 
-    @NotEmpty
-    private String confirmPassword;
-
     @Email
     @NotEmpty
     private String email;
 
-    @Email
-    @NotEmpty
-    private String confirmEmail;
+    public UserDTO() {
+    }
 
-    public UserDTO(String firstName, String lastName, String password, String confirmPassword, String email, String confirmEmail) {
+    public UserDTO(String firstName, String lastName, String password, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
-        this.confirmPassword = confirmPassword;
+
         this.email = email;
-        this.confirmEmail = confirmEmail;
+
     }
 
     public String getFirstName() {
@@ -57,14 +53,6 @@ public class UserDTO {
         this.password = password;
     }
 
-    public String getConfirmPassword() {
-        return confirmPassword;
-    }
-
-    public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -73,11 +61,4 @@ public class UserDTO {
         this.email = email;
     }
 
-    public String getConfirmEmail() {
-        return confirmEmail;
-    }
-
-    public void setConfirmEmail(String confirmEmail) {
-        this.confirmEmail = confirmEmail;
-    }
 }
