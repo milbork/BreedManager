@@ -1,18 +1,9 @@
-package com.breedmanager.entitis;
+package com.breedmanager.DTO;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.persistence.*;
-
-@Entity
-@Table
-public class Breeder {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+public class UserDTO {
     @NotEmpty
     private String firstName;
 
@@ -29,26 +20,17 @@ public class Breeder {
     @NotEmpty
     private String email;
 
-
-
     @Email
     @NotEmpty
     private String confirmEmail;
 
-    @NotEmpty
-    private String breedingName;
-
-    public Breeder() {
-    }
-
-    public Breeder(String firstName, String lastName, String password, String confirmPassword, String email, String confirmEmail, String breedingName) {
+    public UserDTO(String firstName, String lastName, String password, String confirmPassword, String email, String confirmEmail) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
         this.confirmPassword = confirmPassword;
         this.email = email;
         this.confirmEmail = confirmEmail;
-        this.breedingName = breedingName;
     }
 
     public String getFirstName() {
@@ -97,13 +79,5 @@ public class Breeder {
 
     public void setConfirmEmail(String confirmEmail) {
         this.confirmEmail = confirmEmail;
-    }
-
-    public String getBreedingName() {
-        return breedingName;
-    }
-
-    public void setBreedingName(String breedingName) {
-        this.breedingName = breedingName;
     }
 }

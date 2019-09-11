@@ -1,11 +1,13 @@
 package com.breedmanager.interfaces;
 
 
+import com.breedmanager.DTO.BreederDTO;
+import com.breedmanager.DTO.UserDTO;
 import com.breedmanager.entitis.Breeder;
 import com.breedmanager.entitis.User;
 
 public interface RegistrationInterface {
 
-    Breeder addBreeder(Breeder breeder);
-    User addUser(User user);
+    Breeder addBreeder(BreederDTO breeder);
+    User addUser(UserDTO userDTO);
 }
