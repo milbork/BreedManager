@@ -22,11 +22,6 @@ public class RegistrationController {
         this.registrationService = registrationService;
     }
 
-    @RequestMapping(path = {"/home"}, method = RequestMethod.GET)
-    public  String viewHome(){
-        return "index";
-    }
-
     @RequestMapping(path = {"/user"}, method = RequestMethod.GET)
     public String addUser(Model model) {
         model.addAttribute("user", new UserDTO());
@@ -36,14 +31,14 @@ public class RegistrationController {
     @RequestMapping(path = {"/user"}, method = RequestMethod.POST)
     public String registerUserAccount(@ModelAttribute("user") @Valid UserDTO userDTO,
                                       BindingResult result) {
-        User existing = registrationService.findUserByEmail(userDTO.getEmail());
+
 
         if (result.hasErrors()) {
             return "403";
         }
 
         registrationService.addUser(userDTO);
-        return "redirect:/registration/home";
-    }
+        return "redirect:/login";
 
+    }
 }

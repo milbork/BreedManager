@@ -26,14 +26,14 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
-//    @OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
-//    private List<Dog> dogs;
+    @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
+    private List<Dog> dogs;
 //
 //    private List<Litter> litters;
     public User() {
     }
 
-    public User(String firstName, String lastName, String password, int enabled, String email, String breedingName, Set<Role> roles) {
+    public User(String firstName, String lastName, String password, int enabled, String email, String breedingName, Set<Role> roles, List<Dog> dogs) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
@@ -41,6 +41,7 @@ public class User {
         this.email = email;
         this.breedingName = breedingName;
         this.roles = roles;
+        this.dogs = dogs;
     }
 
     public String getFirstName() {
@@ -108,13 +109,14 @@ public class User {
     public void setEnabled(int enabled) {
         this.enabled = enabled;
     }
-//    public List<Dog> getDogs() {
-//        return dogs;
-//    }
-//
-//    public void setDogs(List<Dog> dogs) {
-//        this.dogs = dogs;
-//    }
+
+    public List<Dog> getDogs() {
+        return dogs;
+    }
+
+    public void setDogs(List<Dog> dogs) {
+        this.dogs = dogs;
+    }
 //
 //    public List<Litter> getLitters() {
 //        return litters;

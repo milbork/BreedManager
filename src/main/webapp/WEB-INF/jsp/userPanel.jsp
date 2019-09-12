@@ -12,11 +12,15 @@
     <title>Title</title>
 </head>
 <body>
- Zalogowany
+Zalogowany
 <br><br>
- <form action="<c:url value="/logout"/>" method="post">
-     <input class="fa fa-id-badge" type="submit" value="Logout">
-     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
- </form>
+Hello ${username}
+<br><br>
+<a href="/user/addDog">Add your dog</a>
+<br><br>
+<form action="<c:url value="/logout"/>" method="post">
+    <input class="fa fa-id-badge" type="submit" value="Logout">
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+</form>
 </body>
 </html>
