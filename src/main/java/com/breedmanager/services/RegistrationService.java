@@ -16,17 +16,16 @@ import java.util.HashSet;
 @Service
 public class RegistrationService implements RegistrationInterface {
 
-    @Autowired
     private final UserRepository userRepository;
-    @Autowired
     private final RoleRepository roleRepository;
-    @Autowired
-    private final BCryptPasswordEncoder passwordEncoder;
+    private final BCryptPasswordEncoder passwordEncoder = null;
+
 
     public RegistrationService(UserRepository userRepository,
-                               RoleRepository roleRepository,
-                               BCryptPasswordEncoder passwordEncoder) {
-        this.passwordEncoder = passwordEncoder;
+                               RoleRepository roleRepository
+//                               BCryptPasswordEncoder passwordEncoder
+    ) {
+//        this.passwordEncoder = passwordEncoder;
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
     }

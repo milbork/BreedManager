@@ -1,5 +1,6 @@
 package com.breedmanager.services;
 
+import com.breedmanager.data.CurrentUser;
 import com.breedmanager.entitis.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -22,13 +23,15 @@ public class SpringDataUserDetailsService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String email) {
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+
         User user = registrationService.findUserByEmail(email);
         if (user == null) {throw new UsernameNotFoundException(email); }
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
         user.getRoles().forEach(r ->
                 grantedAuthorities.add(new SimpleGrantedAuthority(r.getName())));
-        return new org.springframework.security.core.userdetails.User(
-                user.getEmail(), user.getPassword(), grantedAuthorities);
+        return new CurrentUser(user.getEmail(), user.getPassword(),
+                grantedAuthorities, user);
     }
+
 }

@@ -39,7 +39,7 @@ public class RegistrationController {
         User existing = registrationService.findUserByEmail(userDTO.getEmail());
 
         if (result.hasErrors()) {
-            return "registration/user";
+            return "403";
         }
 
         registrationService.addUser(userDTO);
