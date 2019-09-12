@@ -3,20 +3,15 @@
   Created by IntelliJ IDEA.
   User: milosz
   Date: 12.09.2019
-  Time: 15:03
+  Time: 21:44
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Logout</title>
 </head>
 <body>
- Zalogowany
-<br><br>
- <form action="<c:url value="/logout"/>" method="post">
-     <input class="fa fa-id-badge" type="submit" value="Logout">
-     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
- </form>
+You were successfully logout!
 </body>
 </html>

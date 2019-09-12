@@ -11,5 +11,6 @@ public class WebAppConfig implements WebMvcConfigurer {
         registry.addViewController("/login").setViewName("login");
         registry.addViewController("/user").setViewName("userPanel");
         registry.addViewController("/403").setViewName("403");
+        registry.addViewController("/logout").setViewName("logout");
     }
 }

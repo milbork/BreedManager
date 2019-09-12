@@ -19,18 +19,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/user").hasRole("USER")
                 .anyRequest().permitAll()
-                .and()
-                .formLogin().loginPage("/login").defaultSuccessUrl("/user")
-                ;
+                .and().formLogin().loginPage("/login").defaultSuccessUrl("/user")
+                .and().logout().logoutSuccessUrl("/logout")
+        ;
     }
 
     @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder(){
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     @Bean
-    public SpringDataUserDetailsService customUserDetailsService(){
+    public SpringDataUserDetailsService customUserDetailsService() {
         return new SpringDataUserDetailsService();
     }
 }
