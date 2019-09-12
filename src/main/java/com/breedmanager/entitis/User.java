@@ -1,30 +1,43 @@
 package com.breedmanager.entitis;
+
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "user")
 public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String firstName;
     private String lastName;
-    private String email;
     private String password;
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<Dog> dogs;
+    private int enabled;
+    @Column(nullable = false, unique = true)
+    private String email;
+    private String breedingName;
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
 
+//    @OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
+//    private List<Dog> dogs;
+//
+//    private List<Litter> litters;
     public User() {
     }
 
-    public User(String firstName, String lastName, String email, String password, List<Dog> dogs) {
+    public User(String firstName, String lastName, String password, int enabled, String email, String breedingName, Set<Role> roles) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.email = email;
         this.password = password;
-        this.dogs = dogs;
+        this.enabled = enabled;
+        this.email = email;
+        this.breedingName = breedingName;
+        this.roles = roles;
     }
 
     public String getFirstName() {
@@ -60,6 +73,15 @@ public class User {
         this.email = email;
     }
 
+
+    public String getBreedingName() {
+        return breedingName;
+    }
+
+    public void setBreedingName(String breedingName) {
+        this.breedingName = breedingName;
+    }
+
     public Long getId() {
         return id;
     }
@@ -68,11 +90,34 @@ public class User {
         this.id = id;
     }
 
-    public List<Dog> getDogs() {
-        return dogs;
+    public Set<Role> getRoles() {
+        return roles;
     }
 
-    public void setDogs(List<Dog> dogs) {
-        this.dogs = dogs;
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
+
+    public int getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(int enabled) {
+        this.enabled = enabled;
+    }
+//    public List<Dog> getDogs() {
+//        return dogs;
+//    }
+//
+//    public void setDogs(List<Dog> dogs) {
+//        this.dogs = dogs;
+//    }
+//
+//    public List<Litter> getLitters() {
+//        return litters;
+//    }
+//
+//    public void setLitters(List<Litter> litters) {
+//        this.litters = litters;
+//    }
 }

@@ -1,8 +1,6 @@
 package com.breedmanager.controllers;
 
-import com.breedmanager.DTO.BreederDTO;
 import com.breedmanager.DTO.UserDTO;
-import com.breedmanager.entitis.Breeder;
 import com.breedmanager.entitis.User;
 import com.breedmanager.services.RegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +18,10 @@ public class RegistrationController {
     @Autowired
     private RegistrationService registrationService;
 
+    public RegistrationController(RegistrationService registrationService) {
+        this.registrationService = registrationService;
+    }
+
     @RequestMapping(path = {"/home"}, method = RequestMethod.GET)
     public  String viewHome(){
         return "index";
@@ -35,39 +37,13 @@ public class RegistrationController {
     public String registerUserAccount(@ModelAttribute("user") @Valid UserDTO userDTO,
                                       BindingResult result) {
         User existing = registrationService.findUserByEmail(userDTO.getEmail());
-        if (existing != null) {
-            result.rejectValue("email", null, "There is already an account registered with that email");
-        }
 
         if (result.hasErrors()) {
-            return "registration";
+            return "registration/user";
         }
 
         registrationService.addUser(userDTO);
-        return "redirect:index";
+        return "redirect:/registration/home";
     }
 
-
-    @RequestMapping(path = {"/breeder"}, method = RequestMethod.GET)
-    public String addBreeder(Model model) {
-        model.addAttribute("breeder", new BreederDTO());
-        return "addBreeder";
-    }
-
-    @RequestMapping(path = {"/breeder"}, method = RequestMethod.POST)
-    public String registerBreederAccount(@ModelAttribute("breeder") @Valid BreederDTO breederDTO,
-                                      BindingResult result) {
-
-        Breeder existing = registrationService.findBreederByEmail(breederDTO.getEmail());
-        if (existing != null) {
-            result.rejectValue("email", null, "There is already an account registered with that email");
-        }
-
-        if (result.hasErrors()) {
-            return "registration";
-        }
-
-        registrationService.addBreeder(breederDTO);
-        return "redirect:index";
-    }
 }

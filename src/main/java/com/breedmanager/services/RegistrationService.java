@@ -1,43 +1,48 @@
 package com.breedmanager.services;
 
-import com.breedmanager.DTO.BreederDTO;
 import com.breedmanager.DTO.UserDTO;
-import com.breedmanager.entitis.Breeder;
+import com.breedmanager.entitis.Role;
 import com.breedmanager.entitis.User;
 import com.breedmanager.interfaces.RegistrationInterface;
-import com.breedmanager.repositories.BreederRepository;
+import com.breedmanager.repositories.RoleRepository;
 import com.breedmanager.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Arrays;
+import java.util.HashSet;
 
 @Service
 public class RegistrationService implements RegistrationInterface {
 
     @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
     @Autowired
-    private BreederRepository breederRepository;
+    private final RoleRepository roleRepository;
+    @Autowired
+    private final BCryptPasswordEncoder passwordEncoder;
 
-    @Override
-    public Breeder addBreeder(BreederDTO breederDTO) {
-
-        Breeder breeder = new Breeder();
-        breeder.setFirstName(breederDTO.getFirstName());
-        breeder.setLastName(breederDTO.getLastName());
-        breeder.setEmail(breederDTO.getEmail());
-        breeder.setPassword(breederDTO.getPassword());
-        breeder.setBreedingName(breederDTO.getBreedingName());
-        return breederRepository.save(breeder);
+    public RegistrationService(UserRepository userRepository,
+                               RoleRepository roleRepository,
+                               BCryptPasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+        this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
     }
 
     @Override
-    public User addUser(UserDTO userDTO) {
+    public void addUser(UserDTO userDTO) {
         User user = new User();
         user.setFirstName(userDTO.getFirstName());
         user.setLastName(userDTO.getLastName());
         user.setEmail(userDTO.getEmail());
-        user.setPassword(userDTO.getPassword());
-        return userRepository.save(user);
+        user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
+        user.setBreedingName(userDTO.getBreedingName());
+        user.setEnabled(1);
+        Role userRole = roleRepository.findByName("ROLE_USER");
+        user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
+        userRepository.save(user);
     }
 
     @Override
@@ -45,8 +50,4 @@ public class RegistrationService implements RegistrationInterface {
         return userRepository.findByEmail(email);
     }
 
-    @Override
-    public Breeder findBreederByEmail(String email) {
-        return breederRepository.findByEmail(email);
-    }
 }

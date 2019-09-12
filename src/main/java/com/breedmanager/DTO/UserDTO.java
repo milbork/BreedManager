@@ -3,7 +3,11 @@ package com.breedmanager.DTO;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import javax.persistence.Column;
+
 public class UserDTO {
+    private Long id;
+
     @NotEmpty
     private String firstName;
 
@@ -15,18 +19,25 @@ public class UserDTO {
 
     @Email
     @NotEmpty
+    @Column(nullable = false, unique = true)
     private String email;
+
+    @NotEmpty
+    private String breedingName;
+
+    private int enabled;
 
     public UserDTO() {
     }
 
-    public UserDTO(String firstName, String lastName, String password, String email) {
+    public UserDTO(Long id, @NotEmpty String firstName, @NotEmpty String lastName, @NotEmpty String password, @Email @NotEmpty String email, @NotEmpty String breedingName, int enabled) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
-
         this.email = email;
-
+        this.breedingName = breedingName;
+        this.enabled = enabled;
     }
 
     public String getFirstName() {
@@ -61,4 +72,28 @@ public class UserDTO {
         this.email = email;
     }
 
+
+    public String getBreedingName() {
+        return breedingName;
+    }
+
+    public void setBreedingName(String breedingName) {
+        this.breedingName = breedingName;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public int getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(int enabled) {
+        this.enabled = enabled;
+    }
 }

@@ -1,3 +1,5 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <%--
   Created by IntelliJ IDEA.
@@ -6,7 +8,6 @@
   Time: 20:40
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Create new user</title>
@@ -22,6 +23,10 @@
         <tr>
             <td>Surname:</td>
             <td><form:input path="lastName"/><form:errors path="lastName" cssClass="error"/></td>
+        </tr>
+        <tr>
+            <td>Breeding name:</td>
+            <td><form:input path="breedingName"/><form:errors path="breedingName" cssClass="error"/></td>
         </tr>
         <tr>
             <td>E-mail:</td>
