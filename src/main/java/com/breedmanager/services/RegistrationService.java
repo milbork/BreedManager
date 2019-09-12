@@ -18,14 +18,14 @@ public class RegistrationService implements RegistrationInterface {
 
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
-    private final BCryptPasswordEncoder passwordEncoder = null;
+    private final BCryptPasswordEncoder passwordEncoder;
 
 
     public RegistrationService(UserRepository userRepository,
-                               RoleRepository roleRepository
-//                               BCryptPasswordEncoder passwordEncoder
+                               RoleRepository roleRepository,
+                               BCryptPasswordEncoder passwordEncoder
     ) {
-//        this.passwordEncoder = passwordEncoder;
+        this.passwordEncoder = passwordEncoder;
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
     }
