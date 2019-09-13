@@ -5,6 +5,7 @@ import com.breedmanager.DTO.UserDTO;
 import com.breedmanager.data.CurrentUser;
 
 
+import com.breedmanager.entitis.Dog;
 import com.breedmanager.entitis.User;
 import com.breedmanager.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +15,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/user")
@@ -75,6 +74,14 @@ public class UserController {
         userService.editProfile(userDTO);
         return "redirect:/user";
 
+    }
+
+    @RequestMapping(path = {"/showDogs"}, method = RequestMethod.GET)
+    public String showDogs(Model model, @AuthenticationPrincipal CurrentUser customUser) {
+        User entityUser = customUser.getUser();
+        model.addAttribute("doggo", userService.changeDogListToStringList(entityUser.getDogs()));
+
+        return "showDogs";
     }
 }
 

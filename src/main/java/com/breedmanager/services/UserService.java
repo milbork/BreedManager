@@ -12,14 +12,16 @@ import com.breedmanager.repositories.UserRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 
 @Service
 public class UserService implements UserInterface {
 
     private final DogRepository dogRepository;
-    private final  UserRepository userRepository;
+    private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
     private final RoleRepository roleRepository;
 
@@ -50,8 +52,27 @@ public class UserService implements UserInterface {
         Dog dog = new Dog();
         dog.setName(dogDTO.getName());
         dog.setBreed(dogDTO.getBreed());
-        dog.setDateOfBirth(dogDTO.getDateOfBirth( ));
+        dog.setDateOfBirth(dogDTO.getDateOfBirth());
         dog.setOwner(dogDTO.getOwner());
         dogRepository.save(dog);
+    }
+
+    @Override
+    public void viewDogs(UserDTO userDTO) {
+
+    }
+
+
+    @Override
+    public void editDog(DogDTO dogDTO) {
+
+    }
+
+    public List<String> changeDogListToStringList(List<Dog> list) {
+        List<String> stringList = new ArrayList<>();
+        for (Dog o : list) {
+            stringList.add(o.toString());
+        }
+        return stringList;
     }
 }

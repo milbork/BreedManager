@@ -12,13 +12,15 @@
     <title>Title</title>
 </head>
 <body>
-Zalogowany
 <br><br>
 Hello ${username}
 <br><br>
+<a href="/user/editUser">Edit your profile</a>
+<br><br>
 <a href="/user/addDog">Add your dog</a>
 <br><br>
-<a href="/user/editUser">Edit your profile</a>
+
+<a href="/user/showDogs">Show list of your dogs</a>
 <br><br>
 <form action="<c:url value="/logout"/>" method="post">
     <input class="fa fa-id-badge" type="submit" value="Logout">

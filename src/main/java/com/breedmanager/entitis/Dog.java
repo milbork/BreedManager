@@ -78,6 +78,15 @@ public class Dog {
 //    public void setLitters(List<Litter> litters) {
 //        this.litters = litters;
 //    }
+
+    @Override
+    public String toString() {
+        return "Dog{" +
+                "breed='" + breed + '\'' +
+                ", name='" + name + '\'' +
+                ", dateOfBirth='" + dateOfBirth + '\'' +
+                '}';
+    }
 }
 
 
