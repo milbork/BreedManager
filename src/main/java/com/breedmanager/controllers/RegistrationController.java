@@ -34,7 +34,7 @@ public class RegistrationController {
 
 
         if (result.hasErrors()) {
-            return "403";
+            return "error";
         }
 
         registrationService.addUser(userDTO);

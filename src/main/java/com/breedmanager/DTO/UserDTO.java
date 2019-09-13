@@ -1,9 +1,11 @@
 package com.breedmanager.DTO;
 
+import com.breedmanager.entitis.Role;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.Column;
+import java.util.Set;
 
 public class UserDTO {
     private Long id;
@@ -25,9 +27,27 @@ public class UserDTO {
     @NotEmpty
     private String breedingName;
 
-    private int enabled;
 
     public UserDTO() {
+    }
+
+    public UserDTO(Long id, @NotEmpty String firstName, @NotEmpty String lastName, @NotEmpty String password, @Email @NotEmpty String email, @NotEmpty String breedingName) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+        this.email = email;
+        this.breedingName = breedingName;
+    }
+
+    public UserDTO(Long id, @NotEmpty String firstName, @NotEmpty String lastName, @NotEmpty String password, @Email @NotEmpty String email, @NotEmpty String breedingName, Set<Role> roles) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+        this.email = email;
+        this.breedingName = breedingName;
+
     }
 
     public UserDTO(Long id, @NotEmpty String firstName, @NotEmpty String lastName, @NotEmpty String password, @Email @NotEmpty String email, @NotEmpty String breedingName, int enabled) {
@@ -37,7 +57,7 @@ public class UserDTO {
         this.password = password;
         this.email = email;
         this.breedingName = breedingName;
-        this.enabled = enabled;
+
     }
 
     public String getFirstName() {
@@ -89,11 +109,4 @@ public class UserDTO {
         this.id = id;
     }
 
-    public int getEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(int enabled) {
-        this.enabled = enabled;
-    }
 }

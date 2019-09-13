@@ -11,6 +11,7 @@
     <title>Title</title>
 </head>
 <body>
-ACCESS DENIED
+ACCESS DENIED<br>
+<a href="/">Back to homepage</a>
 </body>
 </html>

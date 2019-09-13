@@ -30,5 +30,8 @@
         <td colspan="2"><input type="submit" value="Save"></td>
     </tr>
     </form:form>
+</table>
+<br>
+<a href="/user">Cancel</a>
 </body>
 </html>

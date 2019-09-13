@@ -18,6 +18,8 @@ Hello ${username}
 <br><br>
 <a href="/user/addDog">Add your dog</a>
 <br><br>
+<a href="/user/editUser">Edit your profile</a>
+<br><br>
 <form action="<c:url value="/logout"/>" method="post">
     <input class="fa fa-id-badge" type="submit" value="Logout">
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>

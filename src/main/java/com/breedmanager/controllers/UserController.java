@@ -54,6 +54,28 @@ public class UserController {
         userService.addDog(dogDTO);
         return "redirect:/user";
     }
+
+    @RequestMapping(path = {"/editUser"}, method = RequestMethod.GET)
+    public String addUserUser(Model model) {
+        model.addAttribute("user", new UserDTO());
+        return "editUser";
+    }
+
+    @RequestMapping(path = {"/editUser"}, method = RequestMethod.POST)
+    public String registerUserAccount(@ModelAttribute("user") UserDTO userDTO,
+                                      BindingResult result,
+                                      @AuthenticationPrincipal CurrentUser customUser) {
+
+
+        if (result.hasErrors()) {
+            return "error";
+        }
+        User entityUser = customUser.getUser();
+        userDTO.setId(entityUser.getId());
+        userService.editProfile(userDTO);
+        return "redirect:/user";
+
+    }
 }
 
 
