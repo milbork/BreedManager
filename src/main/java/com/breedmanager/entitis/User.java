@@ -18,7 +18,7 @@ public class User {
     private String lastName;
     private String password;
     private int enabled;
-    @Column(nullable = false, unique = true)
+
     private String email;
     private String breedingName;
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

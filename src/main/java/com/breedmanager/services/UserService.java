@@ -65,14 +65,26 @@ public class UserService implements UserInterface {
 
     @Override
     public void editDog(DogDTO dogDTO) {
-
+        Dog dog = new Dog();
+        dog.setId(dogDTO.getId());
+        dog.setName(dogDTO.getName());
+        dog.setBreed(dogDTO.getBreed());
+        dog.setDateOfBirth(dogDTO.getDateOfBirth());
+        dog.setOwner(dogDTO.getOwner());
+        dogRepository.save(dog);
     }
 
-    public List<String> changeDogListToStringList(List<Dog> list) {
-        List<String> stringList = new ArrayList<>();
-        for (Dog o : list) {
-            stringList.add(o.toString());
-        }
-        return stringList;
+
+    @Override
+    public Dog getDogById(Long id) {
+        return dogRepository.getOne(id);
+    }
+
+    public List<Dog> getDogsForUser(Long id) {
+        return dogRepository.findAllByOwnerId(id);
+    }
+
+    public String getUsersDataById(Long id) {
+        return userRepository.findUserById(id).getFirstName();
     }
 }

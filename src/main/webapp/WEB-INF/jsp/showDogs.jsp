@@ -13,7 +13,10 @@
 </head>
 <body>
 <c:forEach items="${doggo}" var="d">
-    ${d}<br>
+    ${d.name}
+    ${d.breed}
+    ${d.dateOfBirth}
+    <a href="/user/editDog/${d.id}">Edit  dog</a>
 </c:forEach>
 <br>
 <a href="/user">Back to user panel</a>
