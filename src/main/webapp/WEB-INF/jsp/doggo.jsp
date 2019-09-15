@@ -12,6 +12,6 @@
 </head>
 <body>
 <h1>Dog for consolation</h1>
-<img src="">
+<img src="/img/consolationDoggo.jpg">
 </body>
 </html>

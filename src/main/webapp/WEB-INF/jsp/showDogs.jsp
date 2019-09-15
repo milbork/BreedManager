@@ -16,7 +16,7 @@
     ${d.name}
     ${d.breed}
     ${d.dateOfBirth}
-    <a href="/user/editDog/${d.id}">Edit  dog</a>
+    <a href="/user/editDog/${d.id}">Edit  dog</a><br>
 </c:forEach>
 <br>
 <a href="/user">Back to user panel</a>

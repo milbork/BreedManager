@@ -1,7 +1,6 @@
 package com.breedmanager.controllers;
 
 import com.breedmanager.DTO.UserDTO;
-import com.breedmanager.entitis.User;
 import com.breedmanager.services.RegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

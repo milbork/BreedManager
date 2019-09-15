@@ -97,6 +97,12 @@ public class UserController {
         userService.editDog(dogDTO);
         return "redirect:showDogs";
     }
+
+    @RequestMapping (path = {"/removeDog/{id}"}, method = RequestMethod.GET)
+    public String removeDog(Model model, @PathVariable Long id) {
+        model.addAttribute("dog", new DogDTO());
+        return "removeDog";
+    }
 }
 
 

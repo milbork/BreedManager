@@ -6,6 +6,7 @@
 </head>
 <body>
 <a href="/registration/user">Create new user</a><br>
-<a href="/login">Log into your account</a>
+<a href="/login">Log into your account</a><br>
+<a href="/doggo">Dog for consolation</a>
 </body>
 </html>

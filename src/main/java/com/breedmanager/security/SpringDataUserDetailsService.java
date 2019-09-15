@@ -1,4 +1,4 @@
-package com.breedmanager.services;
+package com.breedmanager.security;
 
 import com.breedmanager.data.CurrentUser;
 import com.breedmanager.entitis.User;
