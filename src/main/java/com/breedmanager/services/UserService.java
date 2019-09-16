@@ -19,6 +19,8 @@ import java.util.List;
 @Service
 public class UserService implements UserInterface {
 
+
+
     private final DogRepository dogRepository;
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
@@ -29,6 +31,9 @@ public class UserService implements UserInterface {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.roleRepository = roleRepository;
+    }
+    public String getUsersDataById(Long id) {
+        return userRepository.findUserById(id).getFirstName();
     }
 
     @Override
@@ -46,44 +51,15 @@ public class UserService implements UserInterface {
         userRepository.save(user);
     }
 
-    @Override
-    public void addDog(DogDTO dogDTO) {
-        Dog dog = new Dog();
-        dog.setName(dogDTO.getName());
-        dog.setBreed(dogDTO.getBreed());
-        dog.setDateOfBirth(dogDTO.getDateOfBirth());
-        dog.setOwner(dogDTO.getOwner());
-        dogRepository.save(dog);
-    }
 
     @Override
     public void viewDogs(UserDTO userDTO) {
 
     }
 
-
-    @Override
-    public void editDog(DogDTO dogDTO) {
-        Dog dog = new Dog();
-        dog.setId(dogDTO.getId());
-        dog.setName(dogDTO.getName());
-        dog.setBreed(dogDTO.getBreed());
-        dog.setDateOfBirth(dogDTO.getDateOfBirth());
-        dog.setOwner(dogDTO.getOwner());
-        dogRepository.save(dog);
-    }
-
-
-    @Override
-    public Dog getDogById(Long id) {
-        return dogRepository.getOne(id);
-    }
-
     public List<Dog> getDogsForUser(Long id) {
         return dogRepository.findAllByOwnerId(id);
     }
 
-    public String getUsersDataById(Long id) {
-        return userRepository.findUserById(id).getFirstName();
-    }
+
 }

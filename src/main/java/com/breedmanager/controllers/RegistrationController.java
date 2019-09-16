@@ -24,7 +24,7 @@ public class RegistrationController {
     @RequestMapping(path = {"/user"}, method = RequestMethod.GET)
     public String addUser(Model model) {
         model.addAttribute("user", new UserDTO());
-        return "addUser";
+        return "user/addUser";
     }
 
     @RequestMapping(path = {"/user"}, method = RequestMethod.POST)
