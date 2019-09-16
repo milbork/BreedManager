@@ -1,4 +1,5 @@
 package com.breedmanager.controllers;
+
 import com.breedmanager.DTO.UserDTO;
 import com.breedmanager.data.CurrentUser;
 import com.breedmanager.entitis.User;
@@ -27,7 +28,6 @@ public class UserController {
     }
 
 
-
     @RequestMapping(path = {"/editUser"}, method = RequestMethod.GET)
     public String editUser(Model model) {
         model.addAttribute("user", new UserDTO());
@@ -54,6 +54,13 @@ public class UserController {
 
         return "dog/showDogs";
     }
+
+//    @RequestMapping(path = "/removeUser", method = RequestMethod.GET)
+//    public String deleteUser(@AuthenticationPrincipal CurrentUser customUser) {
+//        User entityUser = customUser.getUser();
+//        userService.removeUser(entityUser.getId());
+//        return "redirect:/index";
+//    }
 }
 
 

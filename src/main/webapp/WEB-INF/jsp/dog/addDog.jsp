@@ -1,11 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: milosz
-  Date: 13.09.2019
-  Time: 00:05
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -32,6 +26,6 @@
     </form:form>
 </table>
 <br>
-<a href="/user">Cancel</a>
+<a href="/user"><input type="button" value="Cancel"></a>
 </body>
 </html>

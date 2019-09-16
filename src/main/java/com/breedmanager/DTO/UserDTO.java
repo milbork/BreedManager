@@ -1,11 +1,8 @@
 package com.breedmanager.DTO;
-
-import com.breedmanager.entitis.Role;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.Column;
-import java.util.Set;
 
 public class UserDTO {
     private Long id;
@@ -40,25 +37,6 @@ public class UserDTO {
         this.breedingName = breedingName;
     }
 
-    public UserDTO(Long id, @NotEmpty String firstName, @NotEmpty String lastName, @NotEmpty String password, @Email @NotEmpty String email, @NotEmpty String breedingName, Set<Role> roles) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.password = password;
-        this.email = email;
-        this.breedingName = breedingName;
-
-    }
-
-    public UserDTO(Long id, @NotEmpty String firstName, @NotEmpty String lastName, @NotEmpty String password, @Email @NotEmpty String email, @NotEmpty String breedingName, int enabled) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.password = password;
-        this.email = email;
-        this.breedingName = breedingName;
-
-    }
 
     public String getFirstName() {
         return firstName;

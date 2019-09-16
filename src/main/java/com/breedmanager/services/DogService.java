@@ -27,11 +27,6 @@ public class DogService implements DogInterface {
     }
 
     @Override
-    public void viewDogs(UserDTO userDTO) {
-
-    }
-
-    @Override
     public void addDog(DogDTO dogDTO) {
         Dog dog = new Dog();
         dog.setName(dogDTO.getName());
@@ -39,6 +34,11 @@ public class DogService implements DogInterface {
         dog.setDateOfBirth(dogDTO.getDateOfBirth());
         dog.setOwner(dogDTO.getOwner());
         dogRepository.save(dog);
+    }
+
+    @Override
+    public void viewDogs(UserDTO userDTO) {
+
     }
 
     @Override
@@ -52,7 +52,6 @@ public class DogService implements DogInterface {
         dogRepository.save(dog);
     }
 
-
     @Override
     public Dog getDogById(Long id) {
         return dogRepository.getOne(id);
@@ -60,9 +59,7 @@ public class DogService implements DogInterface {
 
     public void removeDog(Long id) {
         dogRepository.delete(dogRepository.getOne(id));
-
     }
-
 
 }
 

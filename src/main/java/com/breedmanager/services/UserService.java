@@ -1,6 +1,5 @@
 package com.breedmanager.services;
 
-import com.breedmanager.DTO.DogDTO;
 import com.breedmanager.DTO.UserDTO;
 import com.breedmanager.entitis.Dog;
 import com.breedmanager.entitis.Role;
@@ -20,7 +19,6 @@ import java.util.List;
 public class UserService implements UserInterface {
 
 
-
     private final DogRepository dogRepository;
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
@@ -32,6 +30,7 @@ public class UserService implements UserInterface {
         this.passwordEncoder = passwordEncoder;
         this.roleRepository = roleRepository;
     }
+
     public String getUsersDataById(Long id) {
         return userRepository.findUserById(id).getFirstName();
     }
@@ -61,5 +60,8 @@ public class UserService implements UserInterface {
         return dogRepository.findAllByOwnerId(id);
     }
 
+    public void removeUser(Long id) {
+        userRepository.delete(userRepository.getOne(id));
+    }
 
 }
