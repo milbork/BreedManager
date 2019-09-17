@@ -13,15 +13,17 @@ Hello ${username}
 <br><br>
 <a href="/user/addDog"><input type="button" value="Add your dog"></a>
 <br><br>
+<a href="/user/showDogs"><input type="button" value="Show list of your dogs"></a>
+<br><br>
 <a href="/user/addLitter"><input type="button" value="Add litter"></a>
 <br><br>
-
-<a href="/user/showDogs"><input type="button" value="Show list of your dogs"></a>
+<a href="/user/litters"><input type="button" value="Show list of your litters"></a>
 <br><br>
 
 <form action="<c:url value="/logout"/>" method="post">
     <input class="fa fa-id-badge" type="submit" value="Logout">
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 </form>
+
 </body>
 </html>

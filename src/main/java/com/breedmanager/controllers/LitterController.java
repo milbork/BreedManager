@@ -25,11 +25,11 @@ public class LitterController {
     @RequestMapping(path = {"/addLitter"}, method = RequestMethod.GET)
     public String allLitter(Model model) {
         model.addAttribute("litter", new LitterDTO());
-        return "dog/addLitter";
+        return "litter/addLitter";
     }
 
     @RequestMapping(path = {"/addLitter"}, method = RequestMethod.POST)
-    public String addDog(@ModelAttribute("litter") LitterDTO litterDTO,
+    public String addLitter(@ModelAttribute("litter") LitterDTO litterDTO,
                          BindingResult result,
                          @AuthenticationPrincipal CurrentUser customUser) {
 
@@ -41,4 +41,12 @@ public class LitterController {
         litterService.createLitter(litterDTO);
         return "redirect:/user";
     }
+
+    @RequestMapping(path = {"/litters"}, method = RequestMethod.GET)
+    public String showLitter(Model model, @AuthenticationPrincipal CurrentUser customUser, LitterDTO litterDTO) {
+        litterDTO.setId(customUser.getUser().getId());
+        model.addAttribute("litter", litterService.readLitter(litterDTO) );
+        return "litter/litters";
+    }
 }
+

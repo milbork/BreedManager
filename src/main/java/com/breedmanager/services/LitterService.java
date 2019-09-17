@@ -6,7 +6,10 @@ import com.breedmanager.interfaces.LitterInterface;
 import com.breedmanager.repositories.DogRepository;
 import com.breedmanager.repositories.LitterRepository;
 import com.breedmanager.repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Set;
 
 @Service
 public class LitterService implements LitterInterface {
@@ -14,6 +17,7 @@ public class LitterService implements LitterInterface {
     private final DogRepository dogRepository;
     private final UserRepository userRepository;
     private final LitterRepository litterRepository;
+
 
 
     public LitterService(DogRepository dogRepository, UserRepository userRepository, LitterRepository litterRepository) {
@@ -32,12 +36,9 @@ public class LitterService implements LitterInterface {
         litterRepository.save(litter);
     }
 
-
-
-
     @Override
-    public Litter readLitter(LitterDTO litterDTO) {
-        return null;
+    public Set<Litter> readLitter(LitterDTO litterDTO) {
+        return litterRepository.getLittersByBreederId(litterDTO.getId());
     }
 
     @Override
