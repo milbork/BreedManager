@@ -13,7 +13,7 @@ public class LitterService implements LitterInterface {
 
     private final DogRepository dogRepository;
     private final UserRepository userRepository;
-    private final  LitterRepository litterRepository;
+    private final LitterRepository litterRepository;
 
 
     public LitterService(DogRepository dogRepository, UserRepository userRepository, LitterRepository litterRepository) {
@@ -25,7 +25,11 @@ public class LitterService implements LitterInterface {
 
     @Override
     public void createLitter(LitterDTO litterDTO) {
-
+        Litter litter = new Litter();
+        litter.setBreeder(litterDTO.getBreeder());
+        litter.setDateOfBirth(litterDTO.getDateOfBirth());
+        litter.setAmountOfPuppies(litterDTO.getAmountOfPuppies());
+        litterRepository.save(litter);
     }
 
     @Override

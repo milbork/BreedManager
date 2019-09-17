@@ -13,6 +13,8 @@ Hello ${username}
 <br><br>
 <a href="/user/addDog"><input type="button" value="Add your dog"></a>
 <br><br>
+<a href="/user/addLitter"><input type="button" value="Add litter"></a>
+<br><br>
 
 <a href="/user/showDogs"><input type="button" value="Show list of your dogs"></a>
 <br><br>
