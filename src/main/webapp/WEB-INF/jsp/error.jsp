@@ -12,5 +12,6 @@
 </head>
 <body>
 Something goes wrong :(
+<a href="/"><input type="button" value="Homepage"></a>
 </body>
 </html>

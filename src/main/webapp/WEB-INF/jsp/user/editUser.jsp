@@ -42,6 +42,7 @@
 
 </table>
 <br>
-<a href="/user">Cancel</a>
+
+<a href="/user"><input type="button" value="Cancel"></a>
 </body>
 </html>

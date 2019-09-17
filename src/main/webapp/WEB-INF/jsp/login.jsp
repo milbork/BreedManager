@@ -18,6 +18,7 @@
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 </form>
 <br>
-<a href="/">Back to homepage</a>
+
+<a href="/"><input type="button" value="Homepage"></a>
 </body>
 </html>

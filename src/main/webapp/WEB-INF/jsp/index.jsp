@@ -5,8 +5,8 @@
     <title>Home Page</title>
 </head>
 <body>
-<a href="/registration/user">Create new user</a><br>
-<a href="/login">Log into your account</a><br>
-<a href="/doggo">Dog for consolation</a>
+<a href="/registration/user"><input type="button" value="Create new user"></a><br>
+<a href="/login"><input type="button" value="Log into your account"></a><br>
+<a href="/doggo"><input type="button" value="Dog for consolation"></a>
 </body>
 </html>

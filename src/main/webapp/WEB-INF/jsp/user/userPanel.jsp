@@ -3,18 +3,18 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>User Panel</title>
 </head>
 <body>
 <br><br>
 Hello ${username}
 <br><br>
-<a href="/user/editUser">Edit your profile</a>
+<a href="/user/editUser"><input type="button" value="Edit your profile"></a>
 <br><br>
-<a href="/user/addDog">Add your dog</a>
+<a href="/user/addDog"><input type="button" value="Add your dog"></a>
 <br><br>
 
-<a href="/user/showDogs">Show list of your dogs</a>
+<a href="/user/showDogs"><input type="button" value="Show list of your dogs"></a>
 <br><br>
 
 <form action="<c:url value="/logout"/>" method="post">

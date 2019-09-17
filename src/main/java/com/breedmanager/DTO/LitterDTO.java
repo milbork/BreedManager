@@ -1,31 +1,23 @@
-package com.breedmanager.entitis;
+package com.breedmanager.DTO;
 
-import javax.persistence.*;
+import com.breedmanager.entitis.User;
 
-@Entity
-@Table(name = "litter")
-public class Litter {
+public class LitterDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @ManyToOne(cascade = CascadeType.DETACH)
-    @JoinColumn(name = "breeder")
     private User breeder;
-//    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
-//    @JoinColumn(name = "father")
+
 //    private Dog father;
-//    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
-//    @JoinColumn(name = "mother")
 //    private Dog mother;
+
     private String dateOfBirth;
     private int amountOfPuppies;
 
-    public Litter() {
+    public LitterDTO() {
     }
 
-    public Litter(User breeder, String dateOfBirth, int amountOfPuppies) {
+    public LitterDTO(Long id, User breeder, String dateOfBirth, int amountOfPuppies) {
+        this.id = id;
         this.breeder = breeder;
         this.dateOfBirth = dateOfBirth;
         this.amountOfPuppies = amountOfPuppies;
@@ -63,9 +55,3 @@ public class Litter {
         this.amountOfPuppies = amountOfPuppies;
     }
 }
-
-
-
-
-
-

@@ -15,6 +15,6 @@
 You were successfully logout!
 
 <br>
-<a href="/">Back to homepage</a>
+<a href="/"><input type="button" value="Homepage"></a>
 </body>
 </html>

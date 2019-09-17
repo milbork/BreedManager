@@ -1,9 +1,6 @@
 package com.breedmanager.entitis;
 
-import org.springframework.security.core.GrantedAuthority;
-
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
@@ -18,7 +15,6 @@ public class User {
     private String lastName;
     private String password;
     private int enabled;
-
     private String email;
     private String breedingName;
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -28,12 +24,14 @@ public class User {
 
     @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
     private List<Dog> dogs;
-//
-//    private List<Litter> litters;
+
+    @OneToMany(mappedBy = "breeder", fetch = FetchType.EAGER)
+    private Set<Litter> litters;
+
     public User() {
     }
 
-    public User(String firstName, String lastName, String password, int enabled, String email, String breedingName, Set<Role> roles, List<Dog> dogs) {
+    public User(String firstName, String lastName, String password, int enabled, String email, String breedingName, Set<Role> roles, List<Dog> dogs, Set<Litter> litters) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
@@ -42,6 +40,15 @@ public class User {
         this.breedingName = breedingName;
         this.roles = roles;
         this.dogs = dogs;
+        this.litters = litters;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -68,6 +75,13 @@ public class User {
         this.password = password;
     }
 
+    public int getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(int enabled) {
+        this.enabled = enabled;
+    }
 
     public String getEmail() {
         return email;
@@ -77,21 +91,12 @@ public class User {
         this.email = email;
     }
 
-
     public String getBreedingName() {
         return breedingName;
     }
 
     public void setBreedingName(String breedingName) {
         this.breedingName = breedingName;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public Set<Role> getRoles() {
@@ -102,14 +107,6 @@ public class User {
         this.roles = roles;
     }
 
-    public int getEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(int enabled) {
-        this.enabled = enabled;
-    }
-
     public List<Dog> getDogs() {
         return dogs;
     }
@@ -117,12 +114,12 @@ public class User {
     public void setDogs(List<Dog> dogs) {
         this.dogs = dogs;
     }
-//
-//    public List<Litter> getLitters() {
-//        return litters;
-//    }
-//
-//    public void setLitters(List<Litter> litters) {
-//        this.litters = litters;
-//    }
+
+    public Set<Litter> getLitters() {
+        return litters;
+    }
+
+    public void setLitters(Set<Litter> litters) {
+        this.litters = litters;
+    }
 }

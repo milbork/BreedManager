@@ -13,5 +13,6 @@
 <body>
 <h1>Dog for consolation</h1>
 <img src="/img/consolationDoggo.jpg">
+<a href="/"><input type="button" value="Homepage"></a>
 </body>
 </html>
