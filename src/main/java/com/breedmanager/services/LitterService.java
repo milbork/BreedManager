@@ -32,6 +32,9 @@ public class LitterService implements LitterInterface {
         litterRepository.save(litter);
     }
 
+
+
+
     @Override
     public Litter readLitter(LitterDTO litterDTO) {
         return null;
