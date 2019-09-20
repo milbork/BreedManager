@@ -20,23 +20,24 @@ public class UserDTO {
     @NotEmpty
     @Column(nullable = false, unique = true, length = 100)
     private String email;
-
     @NotEmpty
+    private String function;
+
     private String breedingName;
 
 
     public UserDTO() {
     }
 
-    public UserDTO(Long id, @NotEmpty String firstName, @NotEmpty String lastName, @NotEmpty String password, @Email @NotEmpty String email, @NotEmpty String breedingName) {
+    public UserDTO(Long id, @NotEmpty String firstName, @NotEmpty String lastName, @NotEmpty String password, @Email @NotEmpty String email, @NotEmpty String function, String breedingName) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
         this.email = email;
+        this.function = function;
         this.breedingName = breedingName;
     }
-
 
     public String getFirstName() {
         return firstName;
@@ -87,4 +88,11 @@ public class UserDTO {
         this.id = id;
     }
 
+    public String getFunction() {
+        return function;
+    }
+
+    public void setFunction(String function) {
+        this.function = function;
+    }
 }

@@ -35,6 +35,10 @@ public class UserService implements UserInterface {
         return userRepository.findUserById(id).getFirstName();
     }
 
+    public String getUsersFunctionById(Long id) {
+        return userRepository.findUserById(id).getFunction();
+    }
+
     @Override
     public void editProfile(UserDTO userDTO) {
         User user = new User();

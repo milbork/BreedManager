@@ -24,6 +24,7 @@ public class UserController {
     @RequestMapping(method = RequestMethod.GET)
     public String showUserPanel(Model model, @AuthenticationPrincipal CurrentUser customUser) {
         model.addAttribute("username", userService.getUsersDataById(customUser.getUser().getId()));
+        model.addAttribute("function", userService.getUsersFunctionById(customUser.getUser().getId()));
         return "user/userPanel";
     }
 

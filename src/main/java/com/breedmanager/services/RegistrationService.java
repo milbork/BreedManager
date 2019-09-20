@@ -37,10 +37,17 @@ public class RegistrationService implements RegistrationInterface {
         user.setLastName(userDTO.getLastName());
         user.setEmail(userDTO.getEmail());
         user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
-        user.setBreedingName(userDTO.getBreedingName());
+        user.setFunction(userDTO.getFunction());
+        if (userDTO.getFunction().equals("owner")) {
+            Role userRole = roleRepository.findByName("ROLE_USER");
+            user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
+            user.setBreedingName(null);
+        } else if (userDTO.getFunction().equals("breeder")) {
+            Role userRole = roleRepository.findByName("ROLE_BREEDER");
+            user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
+            user.setBreedingName(userDTO.getBreedingName());
+        }
         user.setEnabled(1);
-        Role userRole = roleRepository.findByName("ROLE_USER");
-        user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
         userRepository.save(user);
     }
 

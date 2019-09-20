@@ -11,6 +11,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String function;
     private String firstName;
     private String lastName;
     private String password;
@@ -31,7 +32,8 @@ public class User {
     public User() {
     }
 
-    public User(String firstName, String lastName, String password, int enabled, String email, String breedingName, Set<Role> roles, List<Dog> dogs, Set<Litter> litters) {
+    public User(String function, String firstName, String lastName, String password, int enabled, String email, String breedingName, Set<Role> roles, List<Dog> dogs, Set<Litter> litters) {
+        this.function = function;
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
@@ -121,5 +123,13 @@ public class User {
 
     public void setLitters(Set<Litter> litters) {
         this.litters = litters;
+    }
+
+    public String getFunction() {
+        return function;
+    }
+
+    public void setFunction(String function) {
+        this.function = function;
     }
 }

@@ -31,13 +31,11 @@ public class RegistrationController {
     public String registerUserAccount(@ModelAttribute("user") @Valid UserDTO userDTO,
                                       BindingResult result) {
 
-
         if (result.hasErrors()) {
             return "error";
         }
 
         registrationService.addUser(userDTO);
         return "redirect:/login";
-
     }
 }
