@@ -30,10 +30,25 @@
         <td>${l.dateOfBirth}</td>
     </tr>
     <tr>
-        <td>Breed:</td>
+        <td>Amount of puppies:</td>
         <td> ${l.amountOfPuppies}</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td><a href="/user/editLitter/${l.id}"><input type="button" value="Edit"></a>
+
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>
+            <a href="/user/removeLitter/${l.id}">
+                <input type="button" value="Delete">
+            </a><br><br>
+        </td>
     </tr>
 </c:forEach>
 </table>
+<a href="/user"><input type="button" value="Back to user panel"></a>
 </body>
 </html>

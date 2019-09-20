@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -30,8 +31,8 @@ public class LitterController {
 
     @RequestMapping(path = {"/addLitter"}, method = RequestMethod.POST)
     public String addLitter(@ModelAttribute("litter") LitterDTO litterDTO,
-                         BindingResult result,
-                         @AuthenticationPrincipal CurrentUser customUser) {
+                            BindingResult result,
+                            @AuthenticationPrincipal CurrentUser customUser) {
 
         if (result.hasErrors()) {
             return "error";
@@ -45,8 +46,36 @@ public class LitterController {
     @RequestMapping(path = {"/litters"}, method = RequestMethod.GET)
     public String showLitter(Model model, @AuthenticationPrincipal CurrentUser customUser, LitterDTO litterDTO) {
         litterDTO.setId(customUser.getUser().getId());
-        model.addAttribute("litter", litterService.readLitter(litterDTO) );
+        model.addAttribute("litter", litterService.readLitter(litterDTO));
         return "litter/litters";
+    }
+
+    @RequestMapping(path = {"/editLitter/{id}"}, method = RequestMethod.GET)
+    public String editLitter(Model model, @PathVariable Long id) {
+        model.addAttribute("litter", new LitterDTO());
+        return "litter/editLitter";
+    }
+
+    @RequestMapping(path = {"/editLitter/{id}"}, method = RequestMethod.POST)
+    public String editLitter(@ModelAttribute("litter") LitterDTO litterDTO,
+                             @PathVariable Long id,
+                             BindingResult result,
+                             @AuthenticationPrincipal CurrentUser customUser) {
+
+        if (result.hasErrors()) {
+            return "error";
+        }
+        User entityUser = customUser.getUser();
+        litterDTO.setId(id);
+        litterDTO.setBreeder(entityUser);
+        litterService.updateLitter(litterDTO);
+        return "redirect:/user";
+    }
+
+    @RequestMapping(path = "/removeLitter/{id}", method = RequestMethod.GET)
+    public String removeLitter(@PathVariable Long id) {
+        litterService.deleteLitter(id);
+        return "redirect:/user";
     }
 }
 
