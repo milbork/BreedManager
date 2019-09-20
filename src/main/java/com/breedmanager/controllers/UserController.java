@@ -49,7 +49,7 @@ public class UserController {
         return "redirect:/user";
     }
 
-    @RequestMapping(path = {"/showDogs"}, method = RequestMethod.GET)
+    @RequestMapping(path = {"/dog/show"}, method = RequestMethod.GET)
     public String showDogs(Model model, @AuthenticationPrincipal CurrentUser customUser) {
         model.addAttribute("doggo", userService.getDogsForUser(customUser.getUser().getId()));
 

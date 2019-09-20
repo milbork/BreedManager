@@ -15,10 +15,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/user/**").hasAnyRole("USER","BREEDER")
+                .antMatchers("/user").hasAnyRole("USER","BREEDER")
+                .antMatchers("/user/litter/**").hasAnyRole("BREEDER","ADMIN")
                 .anyRequest().permitAll()
                 .and().formLogin().loginPage("/login").defaultSuccessUrl("/user")
                 .and().logout().logoutSuccessUrl("/logout")
+                .and().exceptionHandling().accessDeniedPage("/403");
         ;
     }
 

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/user/dog")
 public class DogController {
 
     private DogService dogService;
@@ -24,13 +24,13 @@ public class DogController {
     }
 
 
-    @RequestMapping(path = {"/addDog"}, method = RequestMethod.GET)
+    @RequestMapping(path = {"/add"}, method = RequestMethod.GET)
     public String addDog(Model model) {
         model.addAttribute("dog", new DogDTO());
         return "dog/addDog";
     }
 
-    @RequestMapping(path = {"/addDog"}, method = RequestMethod.POST)
+    @RequestMapping(path = {"/add"}, method = RequestMethod.POST)
     public String addDog(@ModelAttribute("dog") DogDTO dogDTO,
                          BindingResult result,
                          @AuthenticationPrincipal CurrentUser customUser) {
@@ -44,13 +44,13 @@ public class DogController {
         return "redirect:/user";
     }
 
-    @RequestMapping(path = {"/editDog/{id}"}, method = RequestMethod.GET)
+    @RequestMapping(path = {"/edit/{id}"}, method = RequestMethod.GET)
     public String editDog(Model model, @PathVariable Long id) {
         model.addAttribute("dog", new DogDTO());
         return "dog/editDog";
     }
 
-    @RequestMapping(path = {"/editDog/{id}"}, method = RequestMethod.POST)
+    @RequestMapping(path = {"/edit/{id}"}, method = RequestMethod.POST)
     public String editDog(@ModelAttribute("dog") DogDTO dogDTO,
                           @PathVariable Long id,
                           @AuthenticationPrincipal CurrentUser customUser,
@@ -62,13 +62,13 @@ public class DogController {
         dogDTO.setId(id);
         dogDTO.setOwner(customUser.getUser());
         dogService.editDog(dogDTO);
-        return "redirect:showDogs";
+        return "redirect:show";
     }
 
-    @RequestMapping(path = "/removeDog/{id}", method = RequestMethod.GET)
+    @RequestMapping(path = "/remove/{id}", method = RequestMethod.GET)
     public String deleteDog(@PathVariable Long id) {
         dogService.removeDog(id);
-        return "redirect:/user/showDogs";
+        return "redirect:/user/dog/show";
     }
 
 }

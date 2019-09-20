@@ -1,11 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: milosz
-  Date: 13.09.2019
-  Time: 00:58
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -21,6 +15,17 @@
         <tr>
             <td>Surname:</td>
             <td><form:input path="lastName"/><form:errors path="lastName" cssClass="error"/></td>
+        </tr>
+        <tr>
+            <td>Function:</td>
+            <td>Owner:
+                <form:radiobutton path="function" value="owner"/>
+                <form:errors path="function" cssClass="error"/>
+            </td>
+            <td>Breeder:
+                <form:radiobutton path="function" value="breeder"/>
+                <form:errors path="function" cssClass="error"/>
+            </td>
         </tr>
         <tr>
             <td>Breeding name:</td>

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/user/litter")
 public class LitterController {
 
     private LitterService litterService;
@@ -23,13 +23,13 @@ public class LitterController {
         this.litterService = litterService;
     }
 
-    @RequestMapping(path = {"/addLitter"}, method = RequestMethod.GET)
+    @RequestMapping(path = {"/add"}, method = RequestMethod.GET)
     public String allLitter(Model model) {
         model.addAttribute("litter", new LitterDTO());
         return "litter/addLitter";
     }
 
-    @RequestMapping(path = {"/addLitter"}, method = RequestMethod.POST)
+    @RequestMapping(path = {"/add"}, method = RequestMethod.POST)
     public String addLitter(@ModelAttribute("litter") LitterDTO litterDTO,
                             BindingResult result,
                             @AuthenticationPrincipal CurrentUser customUser) {
@@ -43,20 +43,20 @@ public class LitterController {
         return "redirect:/user";
     }
 
-    @RequestMapping(path = {"/litters"}, method = RequestMethod.GET)
+    @RequestMapping(path = {"/show"}, method = RequestMethod.GET)
     public String showLitter(Model model, @AuthenticationPrincipal CurrentUser customUser, LitterDTO litterDTO) {
         litterDTO.setId(customUser.getUser().getId());
         model.addAttribute("litter", litterService.readLitter(litterDTO));
         return "litter/litters";
     }
 
-    @RequestMapping(path = {"/editLitter/{id}"}, method = RequestMethod.GET)
+    @RequestMapping(path = {"/edit/{id}"}, method = RequestMethod.GET)
     public String editLitter(Model model, @PathVariable Long id) {
         model.addAttribute("litter", new LitterDTO());
         return "litter/editLitter";
     }
 
-    @RequestMapping(path = {"/editLitter/{id}"}, method = RequestMethod.POST)
+    @RequestMapping(path = {"/edit/{id}"}, method = RequestMethod.POST)
     public String editLitter(@ModelAttribute("litter") LitterDTO litterDTO,
                              @PathVariable Long id,
                              BindingResult result,
@@ -72,7 +72,7 @@ public class LitterController {
         return "redirect:/user";
     }
 
-    @RequestMapping(path = "/removeLitter/{id}", method = RequestMethod.GET)
+    @RequestMapping(path = "/remove/{id}", method = RequestMethod.GET)
     public String removeLitter(@PathVariable Long id) {
         litterService.deleteLitter(id);
         return "redirect:/user";

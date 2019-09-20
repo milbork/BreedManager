@@ -20,7 +20,7 @@
         </tr>
         <tr>
             <td>
-                Function
+                Function:
             </td>
             <td>
                 Owner: <form:radiobutton path="function" value="owner"/>
