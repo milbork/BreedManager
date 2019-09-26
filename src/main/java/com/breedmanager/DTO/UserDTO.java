@@ -1,45 +1,37 @@
 package com.breedmanager.DTO;
 import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotEmpty;
-
 import javax.persistence.Column;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 public class UserDTO {
     private Long id;
-    @NotBlank
-    @NotEmpty( message="This field can't be empty")
+    @NotBlank( message="This field can't be empty")
     @Size(min = 2, max = 30)
     private String firstName;
-    @NotBlank
-    @NotEmpty( message="This field can't be empty")
+    @NotBlank( message="This field can't be empty")
     @Size(min = 2, max = 30)
     private String lastName;
-    @NotBlank
-    @NotEmpty( message="This field can't be empty")
+    @NotBlank( message="This field can't be empty")
     @Size(min = 2, max = 30)
     private String password;
-    @NotBlank
+
     @Email( message="incorrect email")
-    @NotEmpty( message="This field can't be empty")
+    @NotBlank( message="This field can't be empty")
     @Column(nullable = false, unique = true, length = 100)
     private String email;
-    @NotBlank
-    @NotEmpty( message="Set your function")
+    @NotBlank( message="Set your function")
     private String function;
-
     private String breedingName;
-
 
     public UserDTO() {
     }
 
-    public UserDTO(Long id, @NotBlank @NotEmpty(message = "This field can't be empty") @Size(min = 2, max = 30) String firstName,
-                   @NotBlank @NotEmpty(message = "This field can't be empty") @Size(min = 2, max = 30) String lastName,
-                   @NotBlank @NotEmpty(message = "This field can't be empty") @Size(min = 2, max = 30) String password,
-                   @NotBlank @Email(message = "incorrect email") @NotEmpty(message = "This field can't be empty") String email,
-                   @NotBlank @NotEmpty(message = "Set your function") String function, String breedingName) {
+    public UserDTO(Long id, @NotBlank(message = "This field can't be empty") @Size(min = 2, max = 30) String firstName,
+                   @NotBlank(message = "This field can't be empty") @Size(min = 2, max = 30) String lastName,
+                   @NotBlank(message = "This field can't be empty") @Size(min = 2, max = 30) String password,
+                   @Email(message = "incorrect email") @NotBlank(message = "This field can't be empty") String email,
+                   @NotBlank(message = "Set your function") String function, String breedingName) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -80,7 +72,6 @@ public class UserDTO {
     public void setEmail(String email) {
         this.email = email;
     }
-
 
     public String getBreedingName() {
         return breedingName;

@@ -43,7 +43,7 @@ public class UserController {
                            @AuthenticationPrincipal CurrentUser customUser) {
 
         if (result.hasErrors()) {
-            return "error";
+            return "user/editUser";
         }
         User entityUser = customUser.getUser();
         userDTO.setId(entityUser.getId());
