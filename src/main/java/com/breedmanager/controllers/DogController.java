@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.validation.Valid;
+
 @Controller
 @RequestMapping("/user/dog")
 public class DogController {
@@ -31,7 +33,7 @@ public class DogController {
     }
 
     @RequestMapping(path = {"/add"}, method = RequestMethod.POST)
-    public String addDog(@ModelAttribute("dog") DogDTO dogDTO,
+    public String addDog(@ModelAttribute("dog") @Valid DogDTO dogDTO,
                          BindingResult result,
                          @AuthenticationPrincipal CurrentUser customUser) {
 
@@ -51,7 +53,7 @@ public class DogController {
     }
 
     @RequestMapping(path = {"/edit/{id}"}, method = RequestMethod.POST)
-    public String editDog(@ModelAttribute("dog") DogDTO dogDTO,
+    public String editDog(@ModelAttribute("dog") @Valid DogDTO dogDTO,
                           @PathVariable Long id,
                           @AuthenticationPrincipal CurrentUser customUser,
                           BindingResult result) {

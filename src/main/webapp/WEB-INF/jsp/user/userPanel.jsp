@@ -11,7 +11,7 @@
 Hello ${username}<br>
 ${function}
 <br><br>
-<a href="/user/editUser"><input type="button" value="Edit your profile"></a>
+<a href="/user/edit"><input type="button" value="Edit your profile"></a>
 <br><br>
 <a href="/user/dog/add"><input type="button" value="Add your dog"></a>
 <br><br>

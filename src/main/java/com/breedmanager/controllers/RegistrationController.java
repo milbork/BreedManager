@@ -32,7 +32,7 @@ public class RegistrationController {
                                       BindingResult result) {
 
         if (result.hasErrors()) {
-            return "error";
+            return "/user";
         }
 
         registrationService.addUser(userDTO);

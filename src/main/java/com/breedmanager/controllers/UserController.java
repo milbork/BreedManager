@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -29,14 +31,14 @@ public class UserController {
     }
 
 
-    @RequestMapping(path = {"/editUser"}, method = RequestMethod.GET)
+    @RequestMapping(path = {"/edit"}, method = RequestMethod.GET)
     public String editUser(Model model) {
         model.addAttribute("user", new UserDTO());
         return "user/editUser";
     }
 
-    @RequestMapping(path = {"/editUser"}, method = RequestMethod.POST)
-    public String editUser(@ModelAttribute("user") UserDTO userDTO,
+    @RequestMapping(path = {"/edit"}, method = RequestMethod.POST)
+    public String editUser(@ModelAttribute("user") @Valid UserDTO userDTO,
                            BindingResult result,
                            @AuthenticationPrincipal CurrentUser customUser) {
 

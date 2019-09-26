@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.validation.Valid;
+
 @Controller
 @RequestMapping("/user/litter")
 public class LitterController {
@@ -44,7 +46,8 @@ public class LitterController {
     }
 
     @RequestMapping(path = {"/show"}, method = RequestMethod.GET)
-    public String showLitter(Model model, @AuthenticationPrincipal CurrentUser customUser, LitterDTO litterDTO) {
+    public String showLitter(Model model, @AuthenticationPrincipal CurrentUser customUser) {
+        LitterDTO litterDTO = new LitterDTO();
         litterDTO.setId(customUser.getUser().getId());
         model.addAttribute("litter", litterService.readLitter(litterDTO));
         return "litter/litters";
@@ -57,7 +60,7 @@ public class LitterController {
     }
 
     @RequestMapping(path = {"/edit/{id}"}, method = RequestMethod.POST)
-    public String editLitter(@ModelAttribute("litter") LitterDTO litterDTO,
+    public String editLitter(@ModelAttribute("litter") @Valid LitterDTO litterDTO,
                              @PathVariable Long id,
                              BindingResult result,
                              @AuthenticationPrincipal CurrentUser customUser) {
