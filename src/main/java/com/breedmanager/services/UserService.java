@@ -31,6 +31,27 @@ public class UserService implements UserInterface {
         this.roleRepository = roleRepository;
     }
 
+    @Override
+    public void addUser(UserDTO userDTO) {
+        User user = new User();
+        user.setFirstName(userDTO.getFirstName());
+        user.setLastName(userDTO.getLastName());
+        user.setEmail(userDTO.getEmail());
+        user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
+        user.setFunction(userDTO.getFunction());
+        if (userDTO.getFunction().equals("owner")) {
+            Role userRole = roleRepository.findByName("ROLE_USER");
+            user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
+            user.setBreedingName(null);
+        } else if (userDTO.getFunction().equals("breeder")) {
+            Role userRole = roleRepository.findByName("ROLE_BREEDER");
+            user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
+            user.setBreedingName(userDTO.getBreedingName());
+        }
+        user.setEnabled(1);
+        userRepository.save(user);
+    }
+
     public String getUsersDataById(Long id) {
         return userRepository.findUserById(id).getFirstName();
     }

@@ -13,17 +13,33 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/user")
 public class UserController {
 
-    UserService userService;
-
+    private UserService userService;
     public UserController(UserService userService) {
         this.userService = userService;
     }
 
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(path = {"/registration"}, method = RequestMethod.GET)
+    public String addUser(Model model) {
+        model.addAttribute("user", new UserDTO());
+        return "user/addUser";
+    }
+
+    @RequestMapping(path = {"/registration"}, method = RequestMethod.POST)
+    public String registerUserAccount(@ModelAttribute("user") @Valid UserDTO userDTO,
+                                      BindingResult result) {
+
+        if (result.hasErrors()) {
+            return "user/addUser";
+        }
+
+        userService.addUser(userDTO);
+        return "redirect:/login";
+    }
+
+    @GetMapping(path = "/user")
     public String showUserPanel(Model model, @AuthenticationPrincipal CurrentUser customUser) {
         model.addAttribute("username", userService.getUsersDataById(customUser.getUser().getId()));
         model.addAttribute("function", userService.getUsersFunctionById(customUser.getUser().getId()));
@@ -31,13 +47,13 @@ public class UserController {
     }
 
 
-    @RequestMapping(path = {"/edit"}, method = RequestMethod.GET)
+    @RequestMapping(path = {"/user/edit"}, method = RequestMethod.GET)
     public String editUser(Model model) {
         model.addAttribute("user", new UserDTO());
         return "user/editUser";
     }
 
-    @RequestMapping(path = {"/edit"}, method = RequestMethod.POST)
+    @RequestMapping(path = {"/user/edit"}, method = RequestMethod.POST)
     public String editUser(@ModelAttribute("user") @Valid UserDTO userDTO,
                            BindingResult result,
                            @AuthenticationPrincipal CurrentUser customUser) {
@@ -51,7 +67,7 @@ public class UserController {
         return "redirect:/user";
     }
 
-    @RequestMapping(path = {"/dog/show"}, method = RequestMethod.GET)
+    @RequestMapping(path = {"/user/dog/show"}, method = RequestMethod.GET)
     public String showDogs(Model model, @AuthenticationPrincipal CurrentUser customUser) {
         model.addAttribute("doggo", userService.getDogsForUser(customUser.getUser().getId()));
 

@@ -6,6 +6,7 @@ import com.breedmanager.DTO.UserDTO;
 
 public interface UserInterface {
 
+    void addUser(UserDTO userDTO);
 
     void editProfile(UserDTO userDTO);
 
