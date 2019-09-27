@@ -2,25 +2,35 @@ package com.breedmanager.DTO;
 
 import com.breedmanager.entitis.User;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 public class DogDTO {
     private Long id;
+    @NotBlank
+    @Size(min = 2, max = 30)
     private String breed;
+    @NotBlank
+    @Size(min = 2, max = 30)
     private String name;
     private User owner;
+    @NotBlank
+    @Size(min = 2, max = 30)
     private String dateOfBirth;
 
 
     public DogDTO() {
     }
 
-    public DogDTO(String breed, String name, User owner, String dateOfBirth, Long id) {
+    public DogDTO(Long id, @NotBlank @Size(min = 2, max = 30) String breed,
+                  @NotBlank @Size(min = 2, max = 30) String name, User owner,
+                  @NotBlank @Size(min = 2, max = 30) String dateOfBirth) {
+        this.id = id;
         this.breed = breed;
         this.name = name;
         this.owner = owner;
         this.dateOfBirth = dateOfBirth;
-        this.id = id;
     }
 
     public String getBreed() {

@@ -4,6 +4,11 @@
 <html>
 <head>
     <title>Edit your profile</title>
+    <style>
+        .error {
+            color: #ff0000;
+        }
+    </style>
 </head>
 <body>
 <table>
@@ -20,12 +25,12 @@
             <td>Function:</td>
             <td>Owner:
                 <form:radiobutton path="function" value="owner"/>
-                <form:errors path="function" cssClass="error"/>
             </td>
             <td>Breeder:
                 <form:radiobutton path="function" value="breeder"/>
-                <form:errors path="function" cssClass="error"/>
+
             </td>
+            <td><form:errors path="function" cssClass="error"/></td>
         </tr>
         <tr>
             <td>Breeding name:</td>
@@ -43,7 +48,6 @@
             <td colspan="2"><input type="submit" value="Save"></td>
         </tr>
     </form:form>
-
 
 </table>
 <br>

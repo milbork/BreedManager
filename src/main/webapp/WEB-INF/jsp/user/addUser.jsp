@@ -57,6 +57,6 @@
     </form:form>
 </table>
 <br>
-<a href="/">Cancel</a>
+<a href="/"><input type="button" value="Cancel"></a>
 </body>
 </html>

@@ -38,7 +38,7 @@ public class DogController {
                          @AuthenticationPrincipal CurrentUser customUser) {
 
         if (result.hasErrors()) {
-            return "error";
+            return "/add";
         }
         User entityUser = customUser.getUser();
         dogDTO.setOwner(entityUser);
@@ -59,7 +59,7 @@ public class DogController {
                           BindingResult result) {
 
         if (result.hasErrors()) {
-            return "error";
+            return "/edit/{id}";
         }
         dogDTO.setId(id);
         dogDTO.setOwner(customUser.getUser());

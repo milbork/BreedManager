@@ -37,7 +37,7 @@ public class LitterController {
                             @AuthenticationPrincipal CurrentUser customUser) {
 
         if (result.hasErrors()) {
-            return "error";
+            return "/add";
         }
         User entityUser = customUser.getUser();
         litterDTO.setBreeder(entityUser);
@@ -66,7 +66,7 @@ public class LitterController {
                              @AuthenticationPrincipal CurrentUser customUser) {
 
         if (result.hasErrors()) {
-            return "error";
+            return "/edit/{id}";
         }
         User entityUser = customUser.getUser();
         litterDTO.setId(id);

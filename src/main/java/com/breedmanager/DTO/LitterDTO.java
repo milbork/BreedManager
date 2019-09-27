@@ -2,21 +2,27 @@ package com.breedmanager.DTO;
 
 import com.breedmanager.entitis.User;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
+
 public class LitterDTO {
 
     private Long id;
     private User breeder;
 
-//    private Dog father;
+    //    private Dog father;
 //    private Dog mother;
-
+    @NotBlank
+    @Size(min = 2, max = 30)
     private String dateOfBirth;
+    @Positive
     private int amountOfPuppies;
 
     public LitterDTO() {
     }
 
-    public LitterDTO(Long id, User breeder, String dateOfBirth, int amountOfPuppies) {
+    public LitterDTO(Long id, User breeder, @NotBlank @Size(min = 2, max = 30) String dateOfBirth, @Positive int amountOfPuppies) {
         this.id = id;
         this.breeder = breeder;
         this.dateOfBirth = dateOfBirth;
