@@ -32,10 +32,7 @@
             </td>
             <td><form:errors path="function" cssClass="error"/></td>
         </tr>
-        <tr>
-            <td>Breeding name:</td>
-            <td><form:input path="breedingName"/><form:errors path="breedingName" cssClass="error"/></td>
-        </tr>
+
         <tr>
             <td>E-mail:</td>
             <td><form:input path="email"/><form:errors path="email" cssClass="error"/></td>

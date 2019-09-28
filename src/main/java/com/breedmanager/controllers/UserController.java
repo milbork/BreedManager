@@ -1,5 +1,4 @@
 package com.breedmanager.controllers;
-
 import com.breedmanager.DTO.UserDTO;
 import com.breedmanager.data.CurrentUser;
 import com.breedmanager.entitis.User;
@@ -20,6 +19,7 @@ public class UserController {
         this.userService = userService;
     }
 
+    // REGISTRATION
 
     @RequestMapping(path = {"/registration"}, method = RequestMethod.GET)
     public String addUser(Model model) {
@@ -28,7 +28,7 @@ public class UserController {
     }
 
     @RequestMapping(path = {"/registration"}, method = RequestMethod.POST)
-    public String registerUserAccount(@ModelAttribute("user") @Valid UserDTO userDTO,
+    public String addUser(@ModelAttribute("user") @Valid UserDTO userDTO,
                                       BindingResult result) {
 
         if (result.hasErrors()) {
@@ -39,6 +39,8 @@ public class UserController {
         return "redirect:/login";
     }
 
+    // DISPLAY USER
+
     @GetMapping(path = "/user")
     public String showUserPanel(Model model, @AuthenticationPrincipal CurrentUser customUser) {
         model.addAttribute("username", userService.getUsersDataById(customUser.getUser().getId()));
@@ -46,6 +48,7 @@ public class UserController {
         return "user/userPanel";
     }
 
+    // EDIT
 
     @RequestMapping(path = {"/user/edit"}, method = RequestMethod.GET)
     public String editUser(Model model) {
@@ -66,6 +69,9 @@ public class UserController {
         userService.editProfile(userDTO);
         return "redirect:/user";
     }
+
+
+    // ultimately should be transferred to DogController
 
     @RequestMapping(path = {"/user/dog/show"}, method = RequestMethod.GET)
     public String showDogs(Model model, @AuthenticationPrincipal CurrentUser customUser) {

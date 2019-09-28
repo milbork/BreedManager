@@ -13,15 +13,12 @@ import java.util.Set;
 @Service
 public class LitterService implements LitterInterface {
 
-    private final DogRepository dogRepository;
-    private final UserRepository userRepository;
+
     private final LitterRepository litterRepository;
 
 
 
-    public LitterService(DogRepository dogRepository, UserRepository userRepository, LitterRepository litterRepository) {
-        this.dogRepository = dogRepository;
-        this.userRepository = userRepository;
+    public LitterService(LitterRepository litterRepository) {
         this.litterRepository = litterRepository;
     }
 
@@ -29,7 +26,8 @@ public class LitterService implements LitterInterface {
     @Override
     public void createLitter(LitterDTO litterDTO) {
         Litter litter = new Litter();
-        litter.setBreeder(litterDTO.getBreeder());
+        litter.setBreeding(litterDTO.getBreeding());
+        litter.setDogsBreed(litterDTO.getDogsBreed());
         litter.setDateOfBirth(litterDTO.getDateOfBirth());
         litter.setAmountOfPuppies(litterDTO.getAmountOfPuppies());
         litterRepository.save(litter);
@@ -37,14 +35,15 @@ public class LitterService implements LitterInterface {
 
     @Override
     public Set<Litter> readLitter(LitterDTO litterDTO) {
-        return litterRepository.getLittersByBreederId(litterDTO.getId());
+        return litterRepository.getLittersByBreeding_Id(litterDTO.getId());
     }
 
     @Override
     public void updateLitter(LitterDTO litterDTO) {
         Litter litter = new Litter();
         litter.setId(litterDTO.getId());
-        litter.setBreeder(litterDTO.getBreeder());
+        litter.setBreeding(litterDTO.getBreeding());
+        litter.setDogsBreed(litterDTO.getDogsBreed());
         litter.setDateOfBirth(litterDTO.getDateOfBirth());
         litter.setAmountOfPuppies(litterDTO.getAmountOfPuppies());
         litterRepository.save(litter);

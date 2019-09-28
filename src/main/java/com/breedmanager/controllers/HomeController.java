@@ -11,8 +11,4 @@ public class HomeController {
         return "index";
     }
 
-    @RequestMapping("/doggo")
-    public String doggo(){
-        return "doggo";
-    }
 }

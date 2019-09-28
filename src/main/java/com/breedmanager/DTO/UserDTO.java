@@ -1,5 +1,8 @@
 package com.breedmanager.DTO;
+
+import com.breedmanager.entitis.Breeding;
 import org.hibernate.validator.constraints.Email;
+
 import javax.persistence.Column;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -22,23 +25,29 @@ public class UserDTO {
     private String email;
     @NotNull
     private String function;
-    private String breedingName;
+    private Breeding breeding;
 
     public UserDTO() {
     }
 
-    public UserDTO(Long id, @NotBlank @Size(min = 2, max = 30) String firstName,
-                   @NotBlank @Size(min = 2, max = 30) String lastName,
+    public UserDTO(Long id, @NotBlank @Size(min = 2, max = 30) String firstName, @NotBlank @Size(min = 2, max = 30) String lastName,
                    @NotBlank @Size(min = 2, max = 30) String password,
-                   @NotBlank @Email String email,
-                   @NotBlank String function, String breedingName) {
+                   @NotBlank @Email String email, @NotNull String function, Breeding breeding) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
         this.email = email;
         this.function = function;
-        this.breedingName = breedingName;
+        this.breeding = breeding;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -73,27 +82,19 @@ public class UserDTO {
         this.email = email;
     }
 
-    public String getBreedingName() {
-        return breedingName;
-    }
-
-    public void setBreedingName(String breedingName) {
-        this.breedingName = breedingName;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getFunction() {
         return function;
     }
 
     public void setFunction(String function) {
         this.function = function;
+    }
+
+    public Breeding getBreeding() {
+        return breeding;
+    }
+
+    public void setBreeding(Breeding breeding) {
+        this.breeding = breeding;
     }
 }

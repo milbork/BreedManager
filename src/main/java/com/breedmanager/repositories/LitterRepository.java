@@ -9,5 +9,7 @@ import java.util.Set;
 @Repository
 public interface LitterRepository extends JpaRepository<Litter, Long> {
 
-    Set<Litter> getLittersByBreederId(Long id);
+    Set<Litter> getLittersByBreeding_Id(Long id);
+
+
 }

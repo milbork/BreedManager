@@ -1,7 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-
 <html>
 <head>
     <title>Create new user</title>
@@ -26,20 +25,13 @@
             <td><form:errors path="lastName" cssClass="error"/></td>
         </tr>
         <tr>
-            <td>
-                Function:
-            </td>
+            <td> Function:</td>
             <td>
                 Owner: <form:radiobutton path="function" value="owner"/>
                 Breeder: <form:radiobutton path="function" value="breeder"/>
             </td>
             <td><form:errors path="function" cssClass="error"/></td>
 
-        </tr>
-        <tr>
-            <td>Breeding name:</td>
-            <td><form:input path="breedingName"/></td>
-            <td><form:errors path="breedingName" cssClass="error"/></td>
         </tr>
         <tr>
             <td>E-mail:</td>

@@ -39,8 +39,8 @@ public class LitterController {
         if (result.hasErrors()) {
             return "/add";
         }
-        User entityUser = customUser.getUser();
-        litterDTO.setBreeder(entityUser);
+
+        litterDTO.setBreeding(customUser.getUser().getBreeding());
         litterService.createLitter(litterDTO);
         return "redirect:/user";
     }
@@ -68,9 +68,8 @@ public class LitterController {
         if (result.hasErrors()) {
             return "/edit/{id}";
         }
-        User entityUser = customUser.getUser();
         litterDTO.setId(id);
-        litterDTO.setBreeder(entityUser);
+        litterDTO.setBreeding(customUser.getUser().getBreeding());
         litterService.updateLitter(litterDTO);
         return "redirect:/user";
     }

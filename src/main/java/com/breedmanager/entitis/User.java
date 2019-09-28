@@ -17,32 +17,31 @@ public class User {
     private String password;
     private int enabled;
     private String email;
-    private String breedingName;
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
+    @OneToOne
+    private Breeding breeding;
+
     @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
     private List<Dog> dogs;
 
-    @OneToMany(mappedBy = "breeder", fetch = FetchType.EAGER)
-    private Set<Litter> litters;
 
     public User() {
     }
 
-    public User(String function, String firstName, String lastName, String password, int enabled, String email, String breedingName, Set<Role> roles, List<Dog> dogs, Set<Litter> litters) {
+    public User(String function, String firstName, String lastName, String password, int enabled, String email, Set<Role> roles, Breeding breeding, List<Dog> dogs) {
         this.function = function;
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
         this.enabled = enabled;
         this.email = email;
-        this.breedingName = breedingName;
         this.roles = roles;
+        this.breeding = breeding;
         this.dogs = dogs;
-        this.litters = litters;
     }
 
     public Long getId() {
@@ -51,6 +50,14 @@ public class User {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getFunction() {
+        return function;
+    }
+
+    public void setFunction(String function) {
+        this.function = function;
     }
 
     public String getFirstName() {
@@ -93,20 +100,20 @@ public class User {
         this.email = email;
     }
 
-    public String getBreedingName() {
-        return breedingName;
-    }
-
-    public void setBreedingName(String breedingName) {
-        this.breedingName = breedingName;
-    }
-
     public Set<Role> getRoles() {
         return roles;
     }
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public Breeding getBreeding() {
+        return breeding;
+    }
+
+    public void setBreeding(Breeding breeding) {
+        this.breeding = breeding;
     }
 
     public List<Dog> getDogs() {
@@ -117,19 +124,4 @@ public class User {
         this.dogs = dogs;
     }
 
-    public Set<Litter> getLitters() {
-        return litters;
-    }
-
-    public void setLitters(Set<Litter> litters) {
-        this.litters = litters;
-    }
-
-    public String getFunction() {
-        return function;
-    }
-
-    public void setFunction(String function) {
-        this.function = function;
-    }
 }

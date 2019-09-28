@@ -16,19 +16,16 @@ public class Dog {
     @JoinColumn(name = "owner")
     private User owner;
     private String dateOfBirth;
-//    @OneToMany(mappedBy = "dog", fetch = FetchType.LAZY)
-//    private List<Litter> litters;
 
     public Dog() {
     }
 
     public Dog(String breed, String name, User owner,
-               String dateOfBirth, List<Litter> litters) {
+               String dateOfBirth) {
         this.breed = breed;
         this.name = name;
         this.owner = owner;
         this.dateOfBirth = dateOfBirth;
-//        this.litters = litters;
     }
 
     public Long getId() {
@@ -71,22 +68,6 @@ public class Dog {
         this.dateOfBirth = dateOfBirth;
     }
 
-//    public List<Litter> getLitters() {
-//        return litters;
-//    }
-//
-//    public void setLitters(List<Litter> litters) {
-//        this.litters = litters;
-//    }
-
-    @Override
-    public String toString() {
-        return "Dog{" +
-                "breed='" + breed + '\'' +
-                ", name='" + name + '\'' +
-                ", dateOfBirth='" + dateOfBirth + '\'' +
-                '}';
-    }
 }
 
 

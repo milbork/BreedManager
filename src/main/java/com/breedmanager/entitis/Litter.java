@@ -10,23 +10,19 @@ public class Litter {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(cascade = CascadeType.DETACH)
-    @JoinColumn(name = "breeder")
-    private User breeder;
-//    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
-//    @JoinColumn(name = "father")
-//    private Dog father;
-//    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
-//    @JoinColumn(name = "mother")
-//    private Dog mother;
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
+    @JoinColumn(name = "breeding")
+    private Breeding breeding;
+    private String dogsBreed;
     private String dateOfBirth;
     private int amountOfPuppies;
 
     public Litter() {
     }
 
-    public Litter(User breeder, String dateOfBirth, int amountOfPuppies) {
-        this.breeder = breeder;
+    public Litter(Breeding breeding, String dogsBreed, String dateOfBirth, int amountOfPuppies) {
+        this.breeding = breeding;
+        this.dogsBreed = dogsBreed;
         this.dateOfBirth = dateOfBirth;
         this.amountOfPuppies = amountOfPuppies;
     }
@@ -39,12 +35,12 @@ public class Litter {
         this.id = id;
     }
 
-    public User getBreeder() {
-        return breeder;
+    public Breeding getBreeding() {
+        return breeding;
     }
 
-    public void setBreeder(User breeder) {
-        this.breeder = breeder;
+    public void setBreeding(Breeding breeding) {
+        this.breeding = breeding;
     }
 
     public String getDateOfBirth() {
@@ -61,6 +57,14 @@ public class Litter {
 
     public void setAmountOfPuppies(int amountOfPuppies) {
         this.amountOfPuppies = amountOfPuppies;
+    }
+
+    public String getDogsBreed() {
+        return dogsBreed;
+    }
+
+    public void setDogsBreed(String dogsBreed) {
+        this.dogsBreed = dogsBreed;
     }
 }
 
