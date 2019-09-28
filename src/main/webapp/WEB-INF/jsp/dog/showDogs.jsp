@@ -22,13 +22,13 @@
         </tr>
         <tr>
             <td></td>
-            <td><a href="/dog/editDog/${d.id}"><input type="button" value="Edit"></a>
+            <td><a href="/user/dog/edit/${d.id}"><input type="button" value="Edit"></a>
 
             </td>
         </tr>
         <tr>
             <td></td>
-            <td><a href="/dog/removeDog/${d.id}"><input type="button" value="Delete"></a><br><br></td>
+            <td><a href="/user/dog/remove/${d.id}"><input type="button" value="Delete"></a><br><br></td>
         </tr>
     </c:forEach>
 </table>

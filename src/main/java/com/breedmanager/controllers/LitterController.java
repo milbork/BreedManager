@@ -59,9 +59,8 @@ public class LitterController {
     }
 
     @RequestMapping(path = {"/edit/{id}"}, method = RequestMethod.POST)
-    public String editLitter(@ModelAttribute("litter") @Valid LitterDTO litterDTO,
+    public String editLitter(@ModelAttribute("litter") @Valid LitterDTO litterDTO, BindingResult result,
                              @PathVariable Long id,
-                             BindingResult result,
                              @AuthenticationPrincipal CurrentUser customUser) {
 
         if (result.hasErrors()) {

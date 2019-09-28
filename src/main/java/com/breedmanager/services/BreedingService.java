@@ -5,6 +5,8 @@ import com.breedmanager.entitis.Breeding;
 import com.breedmanager.repositories.BreedingRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class BreedingService {
 
@@ -20,5 +22,9 @@ public class BreedingService {
         breeding.setDogsBreed(breedingDTO.getDogsBreed());
         breeding.setName(breedingDTO.getName());
         breedingRepository.save(breeding);
+    }
+
+    public List<Breeding> getBreedings(Long id) {
+        return breedingRepository.findAllByBreederId(id);
     }
 }

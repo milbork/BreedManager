@@ -53,24 +53,25 @@ public class DogController {
     }
 
     @RequestMapping(path = {"/edit/{id}"}, method = RequestMethod.POST)
-    public String editDog(@ModelAttribute("dog") @Valid DogDTO dogDTO, BindingResult result,
+    public String editDog(@ModelAttribute("dog") @Valid DogDTO dogDTO,
+                          BindingResult result,
                           @PathVariable Long id,
                           @AuthenticationPrincipal CurrentUser customUser) {
 
         if (result.hasErrors()) {
-            return "dog/editDog";
+            return "/edit/{id}";
         }
 
         dogDTO.setId(id);
         dogDTO.setOwner(customUser.getUser());
         dogService.editDog(dogDTO);
-        return "redirect:show";
+        return "redirect:/user";
     }
 
     @RequestMapping(path = "/remove/{id}", method = RequestMethod.GET)
     public String deleteDog(@PathVariable Long id) {
         dogService.removeDog(id);
-        return "redirect:/user/dog/show";
+        return "redirect:/user";
     }
 
 }

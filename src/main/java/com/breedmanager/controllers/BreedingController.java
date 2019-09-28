@@ -42,4 +42,10 @@ public class BreedingController {
 
         return "user/userPanel";
     }
+
+    @RequestMapping(path = {"/show"}, method = RequestMethod.GET)
+    public String showBreeding(Model model, @AuthenticationPrincipal CurrentUser customUser) {
+        model.addAttribute("breeding", breedingService.getBreedings(customUser.getUser().getId()));
+        return "litter/litters";
+    }
 }

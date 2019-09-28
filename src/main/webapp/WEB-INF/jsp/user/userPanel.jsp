@@ -25,6 +25,8 @@ ${function}
     <br><br>
     <a href="/user/breeding/add"><input type="button" value="breeding"></a>
     <br><br>
+    <a href="/user/breeding/show"><input type="button" value="breeding"></a>
+    <br><br>
 
 </sec:authorize>
 
