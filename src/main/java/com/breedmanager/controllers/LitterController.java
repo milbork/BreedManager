@@ -41,15 +41,14 @@ public class LitterController {
         }
 
         litterDTO.setBreeding(customUser.getUser().getBreeding());
+        System.out.println(litterDTO.getBreeding());
         litterService.createLitter(litterDTO);
         return "redirect:/user";
     }
 
     @RequestMapping(path = {"/show"}, method = RequestMethod.GET)
     public String showLitter(Model model, @AuthenticationPrincipal CurrentUser customUser) {
-        LitterDTO litterDTO = new LitterDTO();
-        litterDTO.setId(customUser.getUser().getId());
-        model.addAttribute("litter", litterService.readLitter(litterDTO));
+        model.addAttribute("litter", litterService.getLitters(customUser.getUser().getBreeding().getName()));
         return "litter/litters";
     }
 

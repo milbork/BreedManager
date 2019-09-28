@@ -8,6 +8,7 @@ import com.breedmanager.repositories.LitterRepository;
 import com.breedmanager.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -35,7 +36,7 @@ public class LitterService implements LitterInterface {
 
     @Override
     public Set<Litter> readLitter(LitterDTO litterDTO) {
-        return litterRepository.getLittersByBreeding_Id(litterDTO.getId());
+        return litterRepository.findAllByAndBreedingName(litterDTO.getBreeding().getName());
     }
 
     @Override
@@ -52,5 +53,9 @@ public class LitterService implements LitterInterface {
     @Override
     public void deleteLitter(Long id) {
         litterRepository.delete(litterRepository.getOne(id));
+    }
+
+    public Set<Litter> getLitters(String name) {
+        return litterRepository.findAllByAndBreedingName(name);
     }
 }

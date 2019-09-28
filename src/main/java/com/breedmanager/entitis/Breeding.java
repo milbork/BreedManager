@@ -9,13 +9,15 @@ public class Breeding {
 
 
     @Id
-    @GeneratedValue( strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
     private String dogsBreed;
-    @OneToOne
-    @JoinColumn(name = "breeder")
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "breeder_id")
     private User breeder;
+
     @OneToMany(mappedBy = "breeding", fetch = FetchType.LAZY)
     private List<Litter> litters;
 

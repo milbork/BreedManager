@@ -22,7 +22,9 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
-    @OneToOne
+    @OneToOne(mappedBy = "breeder",
+cascade = CascadeType.ALL,
+fetch = FetchType.LAZY)
     private Breeding breeding;
 
     @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)

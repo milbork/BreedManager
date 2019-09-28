@@ -40,6 +40,6 @@ public class BreedingController {
         breedingDTO.setBreeder(currentUser.getUser());
         breedingService.addBreeding(breedingDTO);
 
-        return "/";
+        return "user/userPanel";
     }
 }

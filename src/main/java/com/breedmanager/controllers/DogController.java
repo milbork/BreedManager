@@ -38,7 +38,7 @@ public class DogController {
                          @AuthenticationPrincipal CurrentUser customUser) {
 
         if (result.hasErrors()) {
-            return "/add";
+            return "dog/addDog";
         }
         User entityUser = customUser.getUser();
         dogDTO.setOwner(entityUser);
@@ -53,14 +53,14 @@ public class DogController {
     }
 
     @RequestMapping(path = {"/edit/{id}"}, method = RequestMethod.POST)
-    public String editDog(@ModelAttribute("dog") @Valid DogDTO dogDTO,
+    public String editDog(@ModelAttribute("dog") @Valid DogDTO dogDTO, BindingResult result,
                           @PathVariable Long id,
-                          @AuthenticationPrincipal CurrentUser customUser,
-                          BindingResult result) {
+                          @AuthenticationPrincipal CurrentUser customUser) {
 
         if (result.hasErrors()) {
-            return "/edit/{id}";
+            return "dog/editDog";
         }
+
         dogDTO.setId(id);
         dogDTO.setOwner(customUser.getUser());
         dogService.editDog(dogDTO);
