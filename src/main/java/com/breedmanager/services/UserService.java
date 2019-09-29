@@ -67,6 +67,7 @@ public class UserService implements UserInterface {
         user.setEmail(userDTO.getEmail());
         user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
         user.setEnabled(1);
+        user.setFunction(userDTO.getFunction());
         if (userDTO.getFunction().equals("owner")) {
             Role userRole = roleRepository.findByName("ROLE_USER");
             user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));

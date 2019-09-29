@@ -2,18 +2,21 @@ package com.breedmanager.services;
 
 import com.breedmanager.DTO.BreedingDTO;
 import com.breedmanager.entitis.Breeding;
+import com.breedmanager.entitis.User;
 import com.breedmanager.repositories.BreedingRepository;
+import com.breedmanager.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 
 @Service
 public class BreedingService {
 
     private final BreedingRepository breedingRepository;
+    private final UserRepository userRepository;
 
-    public BreedingService(BreedingRepository breedingRepository) {
+    public BreedingService(BreedingRepository breedingRepository, UserRepository userRepository) {
         this.breedingRepository = breedingRepository;
+        this.userRepository = userRepository;
     }
 
     public void addBreeding(BreedingDTO breedingDTO) {
@@ -24,7 +27,7 @@ public class BreedingService {
         breedingRepository.save(breeding);
     }
 
-    public List<Breeding> getBreedings(Long id) {
-        return breedingRepository.findAllByBreederId(id);
+    public Breeding getBreeding(User user) {
+        return breedingRepository.findBreedingByBreeder(user);
     }
 }

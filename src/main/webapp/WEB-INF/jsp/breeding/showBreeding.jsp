@@ -7,22 +7,18 @@
 </head>
 <body>
 <table>
-    <c:forEach items="${breeding}" var="b">
+
         <tr>
             <td>Name:</td>
-            <td>${b.name}</td>
+            <td>${breeding.name}</td>
         </tr>
         <tr>
             <td>Breed:</td>
-            <td> ${b.dogsBreed}</td>
-        </tr>
-        <tr>
-
+            <td> ${breeding.dogsBreed}</td>
         </tr>
         <tr>
             <td></td>
         </tr>
-    </c:forEach>
 </table>
 </body>
 </html>

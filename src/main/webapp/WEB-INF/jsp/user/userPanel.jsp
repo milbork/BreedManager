@@ -23,9 +23,9 @@ ${function}
     <br><br>
     <a href="/user/litter/show"><input type="button" value="Show list of your litters"></a>
     <br><br>
-    <a href="/user/breeding/add"><input type="button" value="breeding"></a>
+    <a href="/user/breeding/add"><input type="button" value="add breeding"></a>
     <br><br>
-    <a href="/user/breeding/show"><input type="button" value="breeding"></a>
+    <a href="/user/breeding/show"><input type="button" value="show breeding"></a>
     <br><br>
 
 </sec:authorize>

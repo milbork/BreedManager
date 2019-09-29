@@ -45,7 +45,7 @@ public class BreedingController {
 
     @RequestMapping(path = {"/show"}, method = RequestMethod.GET)
     public String showBreeding(Model model, @AuthenticationPrincipal CurrentUser customUser) {
-        model.addAttribute("breeding", breedingService.getBreedings(customUser.getUser().getId()));
-        return "litter/litters";
+        model.addAttribute("breeding", breedingService.getBreeding(customUser.getUser()));
+        return "breeding/showBreeding";
     }
 }
