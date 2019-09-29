@@ -50,13 +50,6 @@ public class UserService implements UserInterface {
         userRepository.save(user);
     }
 
-    public String getUsersDataById(Long id) {
-        return userRepository.findUserById(id).getFirstName();
-    }
-
-    public String getUsersFunctionById(Long id) {
-        return userRepository.findUserById(id).getFunction();
-    }
 
     @Override
     public void editProfile(UserDTO userDTO) {
@@ -83,10 +76,22 @@ public class UserService implements UserInterface {
 
     }
 
+    @Override
     public List<Dog> getDogsForUser(Long id) {
         return dogRepository.findAllByOwnerId(id);
     }
 
+    @Override
+    public String getUsersDataById(Long id) {
+        return userRepository.findUserById(id).getFirstName();
+    }
+
+    @Override
+    public String getUsersFunctionById(Long id) {
+        return userRepository.findUserById(id).getFunction();
+    }
+
+    @Override
     public void removeUser(Long id) {
         userRepository.delete(userRepository.getOne(id));
     }

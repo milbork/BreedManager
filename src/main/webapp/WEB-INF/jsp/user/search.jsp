@@ -7,25 +7,24 @@
 </head>
 <body>
 
-
-
-
 <table>
     <c:forEach items="${search}" var="s">
-    <tr>
-        <td>Name:</td>
-        <td>${s.name}</td>
-    </tr>
-    <tr>
-        <td>Breed:</td>
-        <td> ${s.dogsBreed}</td>
-    </tr>
-    <tr>
-        <td>Breeder email:</td>
-        <td>${s.breeder.email}</td>
-    </tr>
+
+        <tr>
+            <td>Name:</td>
+            <td>${s.name}</td>
+        </tr>
+        <tr>
+            <td>Breed:</td>
+            <td> ${s.dogsBreed}</td>
+        </tr>
+        <tr>
+            <td>Breeder email:</td>
+            <td>${s.breeder.email}</td>
+        </tr>
 
     </c:forEach>
-
+</table>
+<a href="/user"><input type="button" value="Back"></a>
 </body>
 </html>

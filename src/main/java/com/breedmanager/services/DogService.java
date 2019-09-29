@@ -5,9 +5,6 @@ import com.breedmanager.DTO.UserDTO;
 import com.breedmanager.entitis.Dog;
 import com.breedmanager.interfaces.DogInterface;
 import com.breedmanager.repositories.DogRepository;
-import com.breedmanager.repositories.RoleRepository;
-import com.breedmanager.repositories.UserRepository;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 
@@ -15,15 +12,10 @@ import org.springframework.stereotype.Service;
 public class DogService implements DogInterface {
 
     private final DogRepository dogRepository;
-    private final UserRepository userRepository;
-    private final BCryptPasswordEncoder passwordEncoder;
-    private final RoleRepository roleRepository;
 
-    public DogService(DogRepository dogRepository, UserRepository userRepository, BCryptPasswordEncoder passwordEncoder, RoleRepository roleRepository) {
+
+    public DogService(DogRepository dogRepository) {
         this.dogRepository = dogRepository;
-        this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
-        this.roleRepository = roleRepository;
     }
 
     @Override
@@ -57,6 +49,7 @@ public class DogService implements DogInterface {
         return dogRepository.getOne(id);
     }
 
+    @Override
     public void removeDog(Long id) {
         dogRepository.delete(dogRepository.getOne(id));
     }

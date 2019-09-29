@@ -55,6 +55,7 @@ public class LitterService implements LitterInterface {
         litterRepository.delete(litterRepository.getOne(id));
     }
 
+    @Override
     public Set<Litter> getLitters(String name) {
         return litterRepository.findAllByAndBreedingName(name);
     }

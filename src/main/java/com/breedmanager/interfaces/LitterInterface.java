@@ -11,4 +11,5 @@ public interface LitterInterface {
     Set<Litter> readLitter(LitterDTO litterDTO);
     void updateLitter(LitterDTO litterDTO);
     void deleteLitter(Long id);
+    Set<Litter> getLitters(String name);
 }

@@ -64,8 +64,7 @@ public class UserController {
         if (result.hasErrors()) {
             return "user/editUser";
         }
-        User entityUser = customUser.getUser();
-        userDTO.setId(entityUser.getId());
+        userDTO.setId(customUser.getUser().getId());
         userService.editProfile(userDTO);
         return "redirect:/user";
     }

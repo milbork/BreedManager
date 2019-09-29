@@ -14,5 +14,7 @@ public interface DogInterface {
 
     void addDog(DogDTO dogDTO);
 
+    void removeDog(Long id);
+
 
 }
