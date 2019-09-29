@@ -6,6 +6,8 @@
     <title>Show dogs</title>
 </head>
 <body>
+<form
+
 <table>
     <c:forEach items="${doggo}" var="d">
         <tr>

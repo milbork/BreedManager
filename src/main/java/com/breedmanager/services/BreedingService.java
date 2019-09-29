@@ -7,6 +7,8 @@ import com.breedmanager.repositories.BreedingRepository;
 import com.breedmanager.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service
 public class BreedingService {
@@ -29,5 +31,9 @@ public class BreedingService {
 
     public Breeding getBreeding(User user) {
         return breedingRepository.findBreedingByBreeder(user);
+    }
+
+    public List<Breeding> findBreedings(String doggo){
+        return breedingRepository.findBreedingsByDogsBreed(doggo);
     }
 }

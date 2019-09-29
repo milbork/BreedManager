@@ -11,8 +11,12 @@
     </style>
 </head>
 <body>
+<form method="get">
+    <input type="text">
+    <input type="button" value="Search">
+</form>
 <table>
-    <form:form method="post" modelAttribute="user">
+
         <tr>
             <td>Name:</td>
             <td><form:input path="firstName"/><form:errors path="firstName" cssClass="error"/></td>

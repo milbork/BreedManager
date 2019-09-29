@@ -11,6 +11,11 @@
 Hello ${username}<br>
 ${function}
 <br><br>
+<form method="get" action="/user/search">
+    Search breed: <input type="text" name="text">
+    <input type="submit" value="Search">
+</form>
+<br><br>
 <a href="/user/edit"><input type="button" value="Edit your profile"></a>
 <br><br>
 <a href="/user/dog/add"><input type="button" value="Add your dog"></a>
@@ -26,6 +31,8 @@ ${function}
     <a href="/user/breeding/add"><input type="button" value="add breeding"></a>
     <br><br>
     <a href="/user/breeding/show"><input type="button" value="show breeding"></a>
+
+
     <br><br>
 
 </sec:authorize>
