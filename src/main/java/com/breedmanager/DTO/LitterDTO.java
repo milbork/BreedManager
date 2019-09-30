@@ -4,6 +4,7 @@ import com.breedmanager.entitis.Breeding;
 
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
@@ -20,6 +21,7 @@ public class LitterDTO {
     @Positive
     private int amountOfPuppies;
     private Breeding breeding;
+
 
     public LitterDTO() {
     }

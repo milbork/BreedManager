@@ -18,7 +18,6 @@ public class LitterService implements LitterInterface {
     private final LitterRepository litterRepository;
 
 
-
     public LitterService(LitterRepository litterRepository) {
         this.litterRepository = litterRepository;
     }
@@ -31,23 +30,21 @@ public class LitterService implements LitterInterface {
         litter.setDogsBreed(litterDTO.getDogsBreed());
         litter.setDateOfBirth(litterDTO.getDateOfBirth());
         litter.setAmountOfPuppies(litterDTO.getAmountOfPuppies());
+        litter.setAvailable(litterDTO.isAvailable());
         litterRepository.save(litter);
     }
 
     @Override
     public Set<Litter> readLitter(LitterDTO litterDTO) {
-        return litterRepository.findAllByAndBreedingName(litterDTO.getBreeding().getName());
+        return litterRepository.findAllByBreedingName(litterDTO.getBreeding().getName());
     }
 
     @Override
     public void updateLitter(LitterDTO litterDTO) {
         Litter litter = new Litter();
         litter.setId(litterDTO.getId());
-        litter.setBreeding(litterDTO.getBreeding());
-        litter.setDogsBreed(litterDTO.getDogsBreed());
-        litter.setDateOfBirth(litterDTO.getDateOfBirth());
-        litter.setAmountOfPuppies(litterDTO.getAmountOfPuppies());
-        litterRepository.save(litter);
+
+        createLitter(litterDTO);
     }
 
     @Override
@@ -57,6 +54,6 @@ public class LitterService implements LitterInterface {
 
     @Override
     public Set<Litter> getLitters(String name) {
-        return litterRepository.findAllByAndBreedingName(name);
+        return litterRepository.findAllByBreedingName(name);
     }
 }

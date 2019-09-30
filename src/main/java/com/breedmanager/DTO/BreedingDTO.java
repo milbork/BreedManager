@@ -3,6 +3,7 @@ package com.breedmanager.DTO;
 import com.breedmanager.entitis.Litter;
 import com.breedmanager.entitis.User;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
 
@@ -20,6 +21,8 @@ public class BreedingDTO {
     private User breeder;
 
     private List<Litter> litters;
+
+    private boolean isAvailable;
 
     public BreedingDTO() {
     }
@@ -70,5 +73,13 @@ public class BreedingDTO {
 
     public void setLitters(List<Litter> litters) {
         this.litters = litters;
+    }
+
+    public boolean isAvailable() {
+        return isAvailable;
+    }
+
+    public void setAvailable(boolean available) {
+        isAvailable = available;
     }
 }

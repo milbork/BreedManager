@@ -8,7 +8,7 @@
 <body>
 
 <table>
-    <c:forEach items="${search}" var="s">
+    <c:forEach items="${find}" var="s">
 
         <tr>
             <td>Name:</td>
@@ -25,6 +25,6 @@
 
     </c:forEach>
 </table>
-<a href="/user"><input type="button" value="Back"></a>
+<a href='<c:url value="/user"/>'><input type="button" value="Back"></a>
 </body>
 </html>

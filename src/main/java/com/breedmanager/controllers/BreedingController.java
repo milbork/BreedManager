@@ -37,6 +37,10 @@ public class BreedingController {
             return "breeding/addBreeding";
         }
 
+        if (breedingService.findBreedingByBreeder(currentUser.getUser())!= null){
+            return "user/userPanel";
+        }
+
         breedingDTO.setBreeder(currentUser.getUser());
         breedingService.addBreeding(breedingDTO);
 

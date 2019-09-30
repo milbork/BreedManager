@@ -16,6 +16,8 @@
             <td>Breed:</td>
             <td> ${breeding.dogsBreed}</td>
         </tr>
+    <tr>
+    </tr>
         <tr>
             <td></td>
         </tr>

@@ -17,6 +17,7 @@ public class Litter {
     private String dateOfBirth;
     private int amountOfPuppies;
 
+
     public Litter() {
     }
 
@@ -25,6 +26,7 @@ public class Litter {
         this.dogsBreed = dogsBreed;
         this.dateOfBirth = dateOfBirth;
         this.amountOfPuppies = amountOfPuppies;
+
     }
 
     public Long getId() {
@@ -43,6 +45,14 @@ public class Litter {
         this.breeding = breeding;
     }
 
+    public String getDogsBreed() {
+        return dogsBreed;
+    }
+
+    public void setDogsBreed(String dogsBreed) {
+        this.dogsBreed = dogsBreed;
+    }
+
     public String getDateOfBirth() {
         return dateOfBirth;
     }
@@ -58,15 +68,8 @@ public class Litter {
     public void setAmountOfPuppies(int amountOfPuppies) {
         this.amountOfPuppies = amountOfPuppies;
     }
-
-    public String getDogsBreed() {
-        return dogsBreed;
-    }
-
-    public void setDogsBreed(String dogsBreed) {
-        this.dogsBreed = dogsBreed;
-    }
 }
+
 
 
 

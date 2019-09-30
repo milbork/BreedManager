@@ -1,7 +1,7 @@
 package com.breedmanager.controllers;
 
-import com.breedmanager.services.BreedingService;
-import com.breedmanager.services.UserService;
+import com.breedmanager.DTO.SearchDTO;
+import com.breedmanager.services.SearchService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -9,17 +9,26 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class SearchController {
 
-    private BreedingService breedingService;
+    private SearchService searchService;
 
-    public SearchController(BreedingService breedingService) {
-        this.breedingService = breedingService;
+
+    public SearchController(SearchService searchService) {
+        this.searchService = searchService;
     }
 
-    @RequestMapping(path = "/user/search", method = RequestMethod.GET)
-        public String findBreeder(Model model, @RequestParam String text){
-        System.out.println(text);
-        model.addAttribute("search", breedingService.searchForBreedingsByDogsBreed(text));
+    @RequestMapping(path = "/user/search", method = RequestMethod.POST)
+        public String findBreeder(Model model){
+        model.addAttribute("search", new SearchDTO());
         return "user/search";
     }
+    @RequestMapping(path = "/user/search", method = RequestMethod.POST)
+    public String findBreeder(Model model, @ModelAttribute("search")  SearchDTO searchDTO){
+        model.addAttribute("find", searchService.searchForBreedings(searchDTO));
+
+        return "user/search";
+    }
+
+
+
 
 }

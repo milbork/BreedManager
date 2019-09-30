@@ -44,7 +44,5 @@ public class BreedingService implements BreedingInterface {
 
     }
 
-    public List<Breeding> searchForBreedingsByDogsBreed(String doggo) {
-        return breedingRepository.findBreedingsByDogsBreed(doggo);
-    }
+
 }
