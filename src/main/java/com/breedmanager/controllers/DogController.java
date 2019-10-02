@@ -29,6 +29,7 @@ public class DogController {
     @RequestMapping(path = {"/add"}, method = RequestMethod.GET)
     public String addDog(Model model) {
         model.addAttribute("dog", new DogDTO());
+        System.out.println("bangla");
         return "dog/addDog";
     }
 
@@ -36,7 +37,7 @@ public class DogController {
     public String addDog(@ModelAttribute("dog") @Valid DogDTO dogDTO,
                          BindingResult result,
                          @AuthenticationPrincipal CurrentUser customUser) {
-
+        System.out.println(dogDTO.getName());
         if (result.hasErrors()) {
             return "dog/addDog";
         }

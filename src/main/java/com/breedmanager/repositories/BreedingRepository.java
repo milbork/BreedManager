@@ -12,7 +12,9 @@ import java.util.List;
 public interface BreedingRepository extends JpaRepository<Breeding, Long> {
 
     Breeding findBreedingByBreeder(User user);
-    List<Breeding> findBreedingsByDogsBreed(String doggo);
 
+    List<Breeding> findBreedingsByDogsBreed(String dogsBreed);
+    List<Breeding> findBreedingsByAvailable(String available);
 
+    List<Breeding> findBreedingsByDogsBreedAndAvailable(String name, String available);
 }

@@ -12,7 +12,5 @@ import java.util.Set;
 public interface LitterRepository extends JpaRepository<Litter, Long> {
 
     Set<Litter> findAllByBreedingName(String name);
-    List<Litter> findLittersByDogsBreedAndAvailableIsTrue(String breed);
-
 
 }

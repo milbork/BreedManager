@@ -3,7 +3,6 @@ package com.breedmanager.DTO;
 import com.breedmanager.entitis.Litter;
 import com.breedmanager.entitis.User;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
 
@@ -22,17 +21,18 @@ public class BreedingDTO {
 
     private List<Litter> litters;
 
-    private boolean isAvailable;
+    private String available;
 
     public BreedingDTO() {
     }
 
-    public BreedingDTO(Long id, @NotBlank @Size(min = 2, max = 30) String name, @NotBlank @Size(min = 2, max = 30) String dogsBreed, User breeder, List<Litter> litters) {
+    public BreedingDTO(Long id, @NotBlank @Size(min = 2, max = 30) String name, @NotBlank @Size(min = 2, max = 30) String dogsBreed, User breeder, List<Litter> litters, String available) {
         this.id = id;
         this.name = name;
         this.dogsBreed = dogsBreed;
         this.breeder = breeder;
         this.litters = litters;
+        this.available = available;
     }
 
     public Long getId() {
@@ -75,11 +75,11 @@ public class BreedingDTO {
         this.litters = litters;
     }
 
-    public boolean isAvailable() {
-        return isAvailable;
+    public String getAvailable() {
+        return available;
     }
 
-    public void setAvailable(boolean available) {
-        isAvailable = available;
+    public void setAvailable(String available) {
+        this.available = available;
     }
 }

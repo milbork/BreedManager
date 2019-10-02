@@ -30,7 +30,6 @@ public class LitterService implements LitterInterface {
         litter.setDogsBreed(litterDTO.getDogsBreed());
         litter.setDateOfBirth(litterDTO.getDateOfBirth());
         litter.setAmountOfPuppies(litterDTO.getAmountOfPuppies());
-        litter.setAvailable(litterDTO.isAvailable());
         litterRepository.save(litter);
     }
 

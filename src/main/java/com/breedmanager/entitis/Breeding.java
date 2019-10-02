@@ -20,17 +20,17 @@ public class Breeding {
 
     @OneToMany(mappedBy = "breeding", fetch = FetchType.LAZY)
     private List<Litter> litters;
-    private boolean isAvailable;
+    private String available;
 
     public Breeding() {
     }
 
-    public Breeding(String name, String dogsBreed, User breeder, List<Litter> litters, boolean isAvailable) {
+    public Breeding(String name, String dogsBreed, User breeder, List<Litter> litters, String available) {
         this.name = name;
         this.dogsBreed = dogsBreed;
         this.breeder = breeder;
         this.litters = litters;
-        this.isAvailable = isAvailable;
+        this.available = available;
     }
 
     public Long getId() {
@@ -73,11 +73,11 @@ public class Breeding {
         this.litters = litters;
     }
 
-    public boolean isAvailable() {
-        return isAvailable;
+    public String getAvailable() {
+        return available;
     }
 
-    public void setAvailable(boolean available) {
-        isAvailable = available;
+    public void setAvailable(String available) {
+        this.available = available;
     }
 }

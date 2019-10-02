@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping(path = "/user/breeding")
+//@RequestMapping(path = "/user/breeding")
 public class BreedingController {
 
     private BreedingService breedingService;
@@ -52,4 +52,5 @@ public class BreedingController {
         model.addAttribute("breeding", breedingService.findBreedingByBreeder(customUser.getUser()));
         return "breeding/showBreeding";
     }
+
 }

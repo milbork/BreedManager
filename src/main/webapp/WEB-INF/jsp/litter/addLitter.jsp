@@ -29,14 +29,7 @@
             <td><form:input path="amountOfPuppies"/></td>
             <td><form:errors path="amountOfPuppies" cssClass="error"/></td>
         </tr>
-        <tr>
-            <td>Puppies are available:</td>
-            <td>
-                Yes: <form:radiobutton path="available" value="yes"/>
-                No: <form:radiobutton path="available" value="no"/>
-            </td>
-            <td><form:errors path="available" cssClass="error"/></td>
-        </tr>
+
         <tr>
             <td colspan="2"><input type="submit" value="Save"></td>
         </tr>

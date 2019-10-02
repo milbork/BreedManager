@@ -12,30 +12,7 @@
 Hello ${username}<br>
 ${function}
 <br><br>
-<table>
-    <form:form method="post" modelAttribute="search">
-        <tr>
-            <td>Dogs Breed:</td>
-            <td><form:input path="dogsBreed"/></td>
-            <td><form:errors path="dogsBreed" cssClass="error"/></td>
-        </tr>
-        <tr>
-            <td>Breeding name:</td>
-            <td><form:input path="breedingName"/></td>
-            <td><form:errors path="breedingName" cssClass="error"/></td>
-        </tr>
-        <tr>
-            <td> Puppies availability:</td>
-            <td>
-                Available: <form:checkbox path="availableLitters" value="true"/>
-            </td>
-            <td><form:errors path="availableLitters" cssClass="error"/></td>
 
-        </tr>
-        <tr>
-            <td colspan="2"><input type="submit" value="Save"></td>
-        </tr>
-    </form:form>
 </table>
 <br><br>
 <a href='<c:url value= "/user/edit"/>'><input type="button" value="Edit your profile"></a>
