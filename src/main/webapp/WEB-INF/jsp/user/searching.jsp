@@ -15,7 +15,7 @@
         </tr>
         <tr>
             <td>Available:</td>
-            <td><form:radiobutton path="available" value="yes"/></td>
+            <td><form:checkbox path="available" value="yes"/></td>
             <td><form:errors path="available" cssClass="error"/></td>
         </tr>
         <tr>

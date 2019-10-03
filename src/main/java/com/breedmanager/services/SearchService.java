@@ -23,12 +23,12 @@ public class SearchService {
 
     public List<Breeding> searchForBreedings(BreedingDTO breedingDTO) {
 
-//        if ((breedingDTO.getDogsBreed() != null) && (breedingDTO.getAvailable().equals("yes"))) {
-//            return breedingRepository.findBreedingsByDogsBreedAndAvailable(breedingDTO.getDogsBreed(), breedingDTO.getAvailable());
-//        } else if ((breedingDTO.getDogsBreed() == null) && (breedingDTO.getAvailable().equals("yes"))) {
-//            return breedingRepository.findBreedingsByAvailable(breedingDTO.getAvailable());
-//        } else {
+        if ((breedingDTO.getDogsBreed() != null) && (breedingDTO.getAvailable() != null)) {
+            return breedingRepository.findByDogsBreedAndAvailableAllIgnoreCase(breedingDTO.getDogsBreed(), breedingDTO.getAvailable());
+        } else if ((breedingDTO.getDogsBreed() == null) && (breedingDTO.getAvailable().equals("yes"))) {
+            return breedingRepository.findAllByAvailable(breedingDTO.getAvailable());
+        } else {
             return breedingRepository.findBreedingsByDogsBreed(breedingDTO.getDogsBreed());
-
+        }
     }
 }

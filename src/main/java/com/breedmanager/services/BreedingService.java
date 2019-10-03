@@ -26,6 +26,7 @@ public class BreedingService implements BreedingInterface {
         breeding.setBreeder(breedingDTO.getBreeder());
         breeding.setDogsBreed(breedingDTO.getDogsBreed());
         breeding.setName(breedingDTO.getName());
+        breeding.setAvailable(breedingDTO.getAvailable());
         breedingRepository.save(breeding);
     }
 
@@ -36,7 +37,13 @@ public class BreedingService implements BreedingInterface {
 
     @Override
     public void editBreeding(BreedingDTO breedingDTO) {
-
+        Breeding breeding = new Breeding();
+        breeding.setId(breedingDTO.getId());
+        breeding.setBreeder(breedingDTO.getBreeder());
+        breeding.setDogsBreed(breedingDTO.getDogsBreed());
+        breeding.setName(breedingDTO.getName());
+        breeding.setAvailable(breedingDTO.getAvailable());
+        breedingRepository.save(breeding);
     }
 
     @Override

@@ -17,9 +17,11 @@
             <td> ${breeding.dogsBreed}</td>
         </tr>
     <tr>
+        <td>Available litters:</td>
+        <td> ${breeding.available}</td>
     </tr>
         <tr>
-            <td></td>
+            <td><a href='<c:url value="/user/breeding/edit"/>'><input type="button" value="Edit"></a></td>
         </tr>
 </table>
 </body>

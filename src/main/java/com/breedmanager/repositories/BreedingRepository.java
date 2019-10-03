@@ -14,7 +14,6 @@ public interface BreedingRepository extends JpaRepository<Breeding, Long> {
     Breeding findBreedingByBreeder(User user);
 
     List<Breeding> findBreedingsByDogsBreed(String dogsBreed);
-    List<Breeding> findBreedingsByAvailable(String available);
-
-    List<Breeding> findBreedingsByDogsBreedAndAvailable(String name, String available);
+    List<Breeding> findAllByAvailable(String available);
+    List<Breeding> findByDogsBreedAndAvailableAllIgnoreCase(String dogsBreed, String available);
 }
