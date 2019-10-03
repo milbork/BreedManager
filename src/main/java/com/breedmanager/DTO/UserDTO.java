@@ -1,12 +1,14 @@
 package com.breedmanager.DTO;
 
 import com.breedmanager.entitis.Breeding;
+import com.breedmanager.entitis.Message;
 import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.Column;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 public class UserDTO {
     private Long id;
@@ -27,12 +29,13 @@ public class UserDTO {
     private String function;
     private Breeding breeding;
 
+    private List<Message> messages;
+
     public UserDTO() {
     }
 
-    public UserDTO(Long id, @NotBlank @Size(min = 2, max = 30) String firstName, @NotBlank @Size(min = 2, max = 30) String lastName,
-                   @NotBlank @Size(min = 2, max = 30) String password,
-                   @NotBlank @Email String email, @NotNull String function, Breeding breeding) {
+    public UserDTO(Long id, @NotBlank @Size(min = 2, max = 30) String firstName, @NotBlank @Size(min = 2, max = 30) String lastName, @NotBlank @Size(min = 2, max = 30) String password, @NotBlank @Email String email,
+                   @NotNull String function, Breeding breeding, List<Message> messages) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -40,6 +43,7 @@ public class UserDTO {
         this.email = email;
         this.function = function;
         this.breeding = breeding;
+        this.messages = messages;
     }
 
     public Long getId() {
@@ -96,5 +100,13 @@ public class UserDTO {
 
     public void setBreeding(Breeding breeding) {
         this.breeding = breeding;
+    }
+
+    public List<Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(List<Message> messages) {
+        this.messages = messages;
     }
 }

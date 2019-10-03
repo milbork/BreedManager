@@ -1,34 +1,30 @@
 package com.breedmanager.entitis;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "messages")
 public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private User sender;
-    private User recipient;
+
+
     private String message;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
+    @JoinColumn(name = "sender")
+    private User sender;
+
+    private Long recipientsID;
 
     public Message() {
     }
 
-    public Message(User sender, User recipient, String message) {
-        this.sender = sender;
-        this.recipient = recipient;
+    public Message(String message, User sender, Long recipientsID) {
         this.message = message;
-    }
-
-    public void setSender(User sender) {
         this.sender = sender;
-    }
-
-    public User getSender(){
-        return this.sender;
+        this.recipientsID = recipientsID;
     }
 
     public Long getId() {
@@ -39,19 +35,27 @@ public class Message {
         this.id = id;
     }
 
-    public User getRecipient() {
-        return recipient;
-    }
-
-    public void setRecipient(User recipient) {
-        this.recipient = recipient;
-    }
-
     public String getMessage() {
         return message;
     }
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public User getSender() {
+        return sender;
+    }
+
+    public void setSender(User sender) {
+        this.sender = sender;
+    }
+
+    public Long getRecipientsID() {
+        return recipientsID;
+    }
+
+    public void setRecipientsID(Long recipientsID) {
+        this.recipientsID = recipientsID;
     }
 }

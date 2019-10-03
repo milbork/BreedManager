@@ -22,19 +22,22 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
-    @OneToOne(mappedBy = "breeder",
-cascade = CascadeType.ALL,
-fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "breeder", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Breeding breeding;
 
     @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
     private List<Dog> dogs;
 
+    @OneToMany(mappedBy = "sender", fetch = FetchType.LAZY)
+    private List<Message> messages;
+
 
     public User() {
     }
 
-    public User(String function, String firstName, String lastName, String password, int enabled, String email, Set<Role> roles, Breeding breeding, List<Dog> dogs) {
+    public User(String function, String firstName, String lastName, String password, int enabled,
+                String email, Set<Role> roles,
+                Breeding breeding, List<Dog> dogs, List<Message> messages) {
         this.function = function;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -44,6 +47,7 @@ fetch = FetchType.LAZY)
         this.roles = roles;
         this.breeding = breeding;
         this.dogs = dogs;
+        this.messages = messages;
     }
 
     public Long getId() {
@@ -126,4 +130,11 @@ fetch = FetchType.LAZY)
         this.dogs = dogs;
     }
 
+    public List<Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(List<Message> messages) {
+        this.messages = messages;
+    }
 }
