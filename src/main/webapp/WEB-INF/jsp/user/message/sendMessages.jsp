@@ -5,7 +5,7 @@
     <title>Send Message</title>
 </head>
 <body>
-<form:form modelAttribute="messages" method="post">
+<form:form  method="post" modelAttribute="messages">
     <form:textarea path="message"/><br>
     <input type="submit" value="Send">
 </form:form>

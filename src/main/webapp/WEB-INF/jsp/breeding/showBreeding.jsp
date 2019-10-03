@@ -8,21 +8,25 @@
 <body>
 <table>
 
-        <tr>
-            <td>Name:</td>
-            <td>${breeding.name}</td>
-        </tr>
-        <tr>
-            <td>Breed:</td>
-            <td> ${breeding.dogsBreed}</td>
-        </tr>
+    <tr>
+        <td>Name:</td>
+        <td>${breeding.name}</td>
+    </tr>
+    <tr>
+        <td>Breed:</td>
+        <td> ${breeding.dogsBreed}</td>
+    </tr>
     <tr>
         <td>Available litters:</td>
         <td> ${breeding.available}</td>
     </tr>
-        <tr>
-            <td><a href='<c:url value="/user/breeding/edit"/>'><input type="button" value="Edit"></a></td>
-        </tr>
+    <tr>
+        <td>:</td>
+        <td> ${breeding.available}</td>
+    </tr>
+    <tr>
+        <td><a href='<c:url value="/user/breeding/edit"/>'><input type="button" value="Edit"></a></td>
+    </tr>
 </table>
 </body>
 </html>

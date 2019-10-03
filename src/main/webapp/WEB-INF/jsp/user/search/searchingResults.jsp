@@ -22,6 +22,10 @@
             <td>Breeder email:</td>
             <td>${s.breeder.email}</td>
         </tr>
+        <tr>
+            <td>Send message:</td>
+            <td><a href="/user/message/send/${s.breeder.id}"><input type="button" value="Send message"></a>
+        </tr>
 
     </c:forEach>
 </table>
