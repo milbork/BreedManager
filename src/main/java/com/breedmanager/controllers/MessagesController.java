@@ -2,6 +2,7 @@ package com.breedmanager.controllers;
 
 import com.breedmanager.DTO.MessageDTO;
 import com.breedmanager.data.CurrentUser;
+import com.breedmanager.entitis.Message;
 import com.breedmanager.services.MessageService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
 
 @Controller
 @RequestMapping(path = {"/user/message"})
@@ -42,6 +44,12 @@ public class MessagesController {
         messageService.sendMessage(messageDTO);
 
         return "/user/userPanel";
+    }
+
+    @RequestMapping(path = {"/inbox"}, method = RequestMethod.GET)
+    public String getMessagesByRecipient(Model model, @AuthenticationPrincipal CurrentUser currentUser){
+         model.addAttribute("inbox", messageService.findAllByRecipientsId(currentUser.getUser().getId()));
+        return "user/message/inbox";
     }
 
 }
