@@ -34,19 +34,7 @@ public class UserService implements UserInterface {
     @Override
     public void addUser(UserDTO userDTO) {
         User user = new User();
-        user.setFirstName(userDTO.getFirstName());
-        user.setLastName(userDTO.getLastName());
-        user.setEmail(userDTO.getEmail());
-        user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
-        user.setFunction(userDTO.getFunction());
-        if (userDTO.getFunction().equals("owner")) {
-            Role userRole = roleRepository.findByName("ROLE_USER");
-            user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
-        } else if (userDTO.getFunction().equals("breeder")) {
-            Role userRole = roleRepository.findByName("ROLE_BREEDER");
-            user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
-        }
-        user.setEnabled(1);
+        createUser(user, userDTO);
         userRepository.save(user);
     }
 
@@ -55,11 +43,16 @@ public class UserService implements UserInterface {
     public void editProfile(UserDTO userDTO) {
         User user = new User();
         user.setId(userDTO.getId());
+        createUser(user, userDTO);
+
+        userRepository.save(user);
+    }
+
+    private User createUser(User user, UserDTO userDTO) {
         user.setFirstName(userDTO.getFirstName());
         user.setLastName(userDTO.getLastName());
         user.setEmail(userDTO.getEmail());
         user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
-        user.setEnabled(1);
         user.setFunction(userDTO.getFunction());
         if (userDTO.getFunction().equals("owner")) {
             Role userRole = roleRepository.findByName("ROLE_USER");
@@ -68,12 +61,12 @@ public class UserService implements UserInterface {
             Role userRole = roleRepository.findByName("ROLE_BREEDER");
             user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
         }
-        userRepository.save(user);
+        user.setEnabled(1);
+        return user;
     }
 
     @Override
     public void viewDogs(UserDTO userDTO) {
-
     }
 
     @Override
@@ -96,7 +89,7 @@ public class UserService implements UserInterface {
         userRepository.delete(userRepository.getOne(id));
     }
 
-    public User getUserById(Long id){
+    public User getUserById(Long id) {
         return userRepository.findUserById(id);
     }
 
