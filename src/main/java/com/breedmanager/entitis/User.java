@@ -29,15 +29,15 @@ public class User {
     private List<Dog> dogs;
 
     @OneToMany(mappedBy = "sender", fetch = FetchType.LAZY)
-    private List<Message> messages;
-
+    private List<Message> sentMessages;
+    @OneToMany(mappedBy = "receiver", fetch = FetchType.LAZY)
+    private List<Message> receivedMessages;
 
     public User() {
     }
 
-    public User(String function, String firstName, String lastName, String password, int enabled,
-                String email, Set<Role> roles,
-                Breeding breeding, List<Dog> dogs, List<Message> messages) {
+    public User(String function, String firstName, String lastName, String password, int enabled, String email, Set<Role> roles, Breeding breeding,
+                List<Dog> dogs, List<Message> sentMessages, List<Message> receivedMessages) {
         this.function = function;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -47,7 +47,8 @@ public class User {
         this.roles = roles;
         this.breeding = breeding;
         this.dogs = dogs;
-        this.messages = messages;
+        this.sentMessages = sentMessages;
+        this.receivedMessages = receivedMessages;
     }
 
     public Long getId() {
@@ -130,11 +131,19 @@ public class User {
         this.dogs = dogs;
     }
 
-    public List<Message> getMessages() {
-        return messages;
+    public List<Message> getSentMessages() {
+        return sentMessages;
     }
 
-    public void setMessages(List<Message> messages) {
-        this.messages = messages;
+    public void setSentMessages(List<Message> sentMessages) {
+        this.sentMessages = sentMessages;
+    }
+
+    public List<Message> getReceivedMessages() {
+        return receivedMessages;
+    }
+
+    public void setReceivedMessages(List<Message> receivedMessages) {
+        this.receivedMessages = receivedMessages;
     }
 }

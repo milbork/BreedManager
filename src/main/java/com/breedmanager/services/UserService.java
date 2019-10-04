@@ -96,4 +96,8 @@ public class UserService implements UserInterface {
         userRepository.delete(userRepository.getOne(id));
     }
 
+    public User getUserById(Long id){
+        return userRepository.findUserById(id);
+    }
+
 }

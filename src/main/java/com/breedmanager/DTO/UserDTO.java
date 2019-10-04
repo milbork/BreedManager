@@ -29,13 +29,14 @@ public class UserDTO {
     private String function;
     private Breeding breeding;
 
-    private List<Message> messages;
+    private List<Message> sentMessages;
+    private List<Message> receivedMessages;
 
     public UserDTO() {
     }
 
-    public UserDTO(Long id, @NotBlank @Size(min = 2, max = 30) String firstName, @NotBlank @Size(min = 2, max = 30) String lastName, @NotBlank @Size(min = 2, max = 30) String password, @NotBlank @Email String email,
-                   @NotNull String function, Breeding breeding, List<Message> messages) {
+    public UserDTO(Long id, @NotBlank @Size(min = 2, max = 30) String firstName, @NotBlank @Size(min = 2, max = 30) String lastName, @NotBlank @Size(min = 2, max = 30) String password, @NotBlank @Email String email, @NotNull String function,
+                   Breeding breeding, List<Message> sentMessages, List<Message> receivedMessages) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -43,7 +44,8 @@ public class UserDTO {
         this.email = email;
         this.function = function;
         this.breeding = breeding;
-        this.messages = messages;
+        this.sentMessages = sentMessages;
+        this.receivedMessages = receivedMessages;
     }
 
     public Long getId() {
@@ -102,11 +104,19 @@ public class UserDTO {
         this.breeding = breeding;
     }
 
-    public List<Message> getMessages() {
-        return messages;
+    public List<Message> getSentMessages() {
+        return sentMessages;
     }
 
-    public void setMessages(List<Message> messages) {
-        this.messages = messages;
+    public void setSentMessages(List<Message> sentMessages) {
+        this.sentMessages = sentMessages;
+    }
+
+    public List<Message> getReceivedMessages() {
+        return receivedMessages;
+    }
+
+    public void setReceivedMessages(List<Message> receivedMessages) {
+        this.receivedMessages = receivedMessages;
     }
 }

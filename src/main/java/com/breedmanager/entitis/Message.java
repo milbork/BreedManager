@@ -16,15 +16,17 @@ public class Message {
     @JoinColumn(name = "sender")
     private User sender;
 
-    private Long recipientsID;
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
+    @JoinColumn(name = "receiver")
+    private User receiver;
 
     public Message() {
     }
 
-    public Message(String message, User sender, Long recipientsID) {
+    public Message(String message, User sender, User receiver) {
         this.message = message;
         this.sender = sender;
-        this.recipientsID = recipientsID;
+        this.receiver = receiver;
     }
 
     public Long getId() {
@@ -51,11 +53,11 @@ public class Message {
         this.sender = sender;
     }
 
-    public Long getRecipientsID() {
-        return recipientsID;
+    public User getReceiver() {
+        return receiver;
     }
 
-    public void setRecipientsID(Long recipientsID) {
-        this.recipientsID = recipientsID;
+    public void setReceiver(User receiver) {
+        this.receiver = receiver;
     }
 }

@@ -5,16 +5,17 @@ import com.breedmanager.entitis.User;
 public class MessageDTO {
     private Long id;
     private User sender;
-    private Long recipientsID;
+    private User receiver;
     private String message;
 
     public MessageDTO() {
     }
 
-    public MessageDTO(String message, User sender, Long recipientsID) {
-        this.message = message;
+    public MessageDTO(Long id, User sender, User receiver, String message) {
+        this.id = id;
         this.sender = sender;
-        this.recipientsID = recipientsID;
+        this.receiver = receiver;
+        this.message = message;
     }
 
     public Long getId() {
@@ -25,14 +26,6 @@ public class MessageDTO {
         this.id = id;
     }
 
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
     public User getSender() {
         return sender;
     }
@@ -41,11 +34,19 @@ public class MessageDTO {
         this.sender = sender;
     }
 
-    public Long getRecipientsID() {
-        return recipientsID;
+    public User getReceiver() {
+        return receiver;
     }
 
-    public void setRecipientsID(Long recipientsID) {
-        this.recipientsID = recipientsID;
+    public void setReceiver(User receiver) {
+        this.receiver = receiver;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }
