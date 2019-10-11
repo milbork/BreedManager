@@ -75,4 +75,11 @@ public class DogController {
         return "redirect:/user";
     }
 
+    @RequestMapping(path = {"/user/dog/show"}, method = RequestMethod.GET)
+    public String showDogs(Model model, @AuthenticationPrincipal CurrentUser customUser) {
+        model.addAttribute("doggo", dogService.showDogs(customUser.getUser().getId()));
+
+        return "dog/showDogs";
+    }
+
 }

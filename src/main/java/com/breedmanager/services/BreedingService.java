@@ -5,10 +5,7 @@ import com.breedmanager.entitis.Breeding;
 import com.breedmanager.entitis.User;
 import com.breedmanager.interfaces.BreedingInterface;
 import com.breedmanager.repositories.BreedingRepository;
-import com.breedmanager.repositories.UserRepository;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 
 @Service
@@ -23,22 +20,17 @@ public class BreedingService implements BreedingInterface {
     @Override
     public void addBreeding(BreedingDTO breedingDTO) {
         Breeding breeding = new Breeding();
-        breeding.setBreeder(breedingDTO.getBreeder());
-        breeding.setDogsBreed(breedingDTO.getDogsBreed());
-        breeding.setName(breedingDTO.getName());
-        breeding.setAvailable(breedingDTO.getAvailable());
-        breedingRepository.save(breeding);
-    }
-
-    @Override
-    public Breeding findBreedingByBreeder(User user) {
-        return breedingRepository.findBreedingByBreeder(user);
+        createAndEdit(breedingDTO, breeding);
     }
 
     @Override
     public void editBreeding(BreedingDTO breedingDTO) {
         Breeding breeding = new Breeding();
         breeding.setId(breedingDTO.getId());
+        createAndEdit(breedingDTO, breeding);
+    }
+
+    private void createAndEdit(BreedingDTO breedingDTO, Breeding breeding) {
         breeding.setBreeder(breedingDTO.getBreeder());
         breeding.setDogsBreed(breedingDTO.getDogsBreed());
         breeding.setName(breedingDTO.getName());
@@ -48,8 +40,12 @@ public class BreedingService implements BreedingInterface {
 
     @Override
     public void deleteBreeding(Long id) {
-
+        breedingRepository.deleteById(id);
     }
 
+    @Override
+    public Breeding findBreedingByBreeder(User user) {
+        return breedingRepository.findBreedingByBreeder(user);
+    }
 
 }

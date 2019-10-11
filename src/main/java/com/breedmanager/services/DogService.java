@@ -7,6 +7,8 @@ import com.breedmanager.interfaces.DogInterface;
 import com.breedmanager.repositories.DogRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service
 public class DogService implements DogInterface {
@@ -29,8 +31,8 @@ public class DogService implements DogInterface {
     }
 
     @Override
-    public void viewDogs(UserDTO userDTO) {
-
+    public List<Dog> showDogs(Long id) {
+        return dogRepository.findAllByOwnerId(id);
     }
 
     @Override
@@ -42,11 +44,6 @@ public class DogService implements DogInterface {
         dog.setDateOfBirth(dogDTO.getDateOfBirth());
         dog.setOwner(dogDTO.getOwner());
         dogRepository.save(dog);
-    }
-
-    @Override
-    public Dog getDogById(Long id) {
-        return dogRepository.getOne(id);
     }
 
     @Override

@@ -13,13 +13,11 @@ public interface UserInterface {
 
     void editProfile(UserDTO userDTO);
 
-    void viewDogs(UserDTO userDTO);
+    String getUsersDataById(Long id);
 
-     List<Dog> getDogsForUser(Long id);
-     String getUsersDataById(Long id);
-     String getUsersFunctionById(Long id);
-     void removeUser(Long id);
+    String getUsersFunctionById(Long id);
 
+    void removeUser(Long id);
 
 
 }

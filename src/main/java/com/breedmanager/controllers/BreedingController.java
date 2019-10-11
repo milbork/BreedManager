@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -61,9 +60,9 @@ public class BreedingController {
     }
 
     @RequestMapping(path = {"/edit"}, method = RequestMethod.POST)
-    public String editDog(@ModelAttribute("breeding") @Valid BreedingDTO breedingDTO,
-                          BindingResult result,
-                          @AuthenticationPrincipal CurrentUser customUser) {
+    public String editBreeding(@ModelAttribute("breeding") @Valid BreedingDTO breedingDTO,
+                               BindingResult result,
+                               @AuthenticationPrincipal CurrentUser customUser) {
 
         if (result.hasErrors()) {
             return "/edit";
@@ -74,6 +73,12 @@ public class BreedingController {
         breedingService.editBreeding(breedingDTO);
 
         return "redirect:/user";
+    }
+
+    @RequestMapping(path = "/delete", method = RequestMethod.GET)
+    public String deleteBreeding(@AuthenticationPrincipal CurrentUser currentUser) {
+        breedingService.deleteBreeding(currentUser.getUser().getId());
+        return "breeding/show";
     }
 
 }

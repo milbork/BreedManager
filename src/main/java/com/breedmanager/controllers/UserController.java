@@ -70,15 +70,6 @@ public class UserController {
     }
 
 
-    // ultimately should be transferred to DogController
-
-    @RequestMapping(path = {"/user/dog/show"}, method = RequestMethod.GET)
-    public String showDogs(Model model, @AuthenticationPrincipal CurrentUser customUser) {
-        model.addAttribute("doggo", userService.getDogsForUser(customUser.getUser().getId()));
-
-        return "dog/showDogs";
-    }
-
 //    @RequestMapping(path = "/removeUser", method = RequestMethod.GET)
 //    public String deleteUser(@AuthenticationPrincipal CurrentUser customUser) {
 //        User entityUser = customUser.getUser();

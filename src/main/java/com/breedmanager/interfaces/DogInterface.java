@@ -1,16 +1,15 @@
 package com.breedmanager.interfaces;
 
 import com.breedmanager.DTO.DogDTO;
-import com.breedmanager.DTO.UserDTO;
 import com.breedmanager.entitis.Dog;
+
+import java.util.List;
 
 public interface DogInterface {
 
-    void viewDogs(UserDTO userDTO);
+    List<Dog> showDogs(Long id);
 
     void editDog(DogDTO dogDTO);
-
-    Dog getDogById(Long id);
 
     void addDog(DogDTO dogDTO);
 

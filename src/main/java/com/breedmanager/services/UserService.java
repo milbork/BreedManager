@@ -1,11 +1,9 @@
 package com.breedmanager.services;
 
 import com.breedmanager.DTO.UserDTO;
-import com.breedmanager.entitis.Dog;
 import com.breedmanager.entitis.Role;
 import com.breedmanager.entitis.User;
 import com.breedmanager.interfaces.UserInterface;
-import com.breedmanager.repositories.DogRepository;
 import com.breedmanager.repositories.RoleRepository;
 import com.breedmanager.repositories.UserRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -13,19 +11,16 @@ import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 
 @Service
 public class UserService implements UserInterface {
 
 
-    private final DogRepository dogRepository;
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
     private final RoleRepository roleRepository;
 
-    public UserService(DogRepository dogRepository, UserRepository userRepository, BCryptPasswordEncoder passwordEncoder, RoleRepository roleRepository) {
-        this.dogRepository = dogRepository;
+    public UserService(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder, RoleRepository roleRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.roleRepository = roleRepository;
@@ -65,14 +60,6 @@ public class UserService implements UserInterface {
         return user;
     }
 
-    @Override
-    public void viewDogs(UserDTO userDTO) {
-    }
-
-    @Override
-    public List<Dog> getDogsForUser(Long id) {
-        return dogRepository.findAllByOwnerId(id);
-    }
 
     @Override
     public String getUsersDataById(Long id) {
