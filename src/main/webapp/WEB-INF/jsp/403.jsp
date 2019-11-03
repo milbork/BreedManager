@@ -7,9 +7,5 @@
 <h1>ACCESS DENIED</h1>
     <br>
     <a href="/"><input type="button" value="Homepage"></a>
-    <br>
-    <h3>Dog for consolation</h3>
-    <img src="/img/consolationDoggo.jpg">
-    <a href="/"><input type="button" value="Homepage"></a>
 </body>
 </html>

@@ -13,6 +13,6 @@
 </form>
 <br>
 
-<a href="/"><input type="button" value="Homepage"></a>
+<a href="${pageContext.request.contextPath}/"><input type="button" value="Homepage"></a>
 </body>
 </html>

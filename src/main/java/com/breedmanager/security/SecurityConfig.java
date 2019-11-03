@@ -18,7 +18,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/user").hasAnyRole("USER","BREEDER")
                 .antMatchers("/user/litter/**").hasAnyRole("BREEDER","ADMIN")
                 .anyRequest().permitAll()
-                .and().formLogin().loginPage("/login").defaultSuccessUrl("/user")
+                .and().formLogin().loginPage("/").defaultSuccessUrl("/user")
                 .and().logout().logoutSuccessUrl("/logout")
                 .and().exceptionHandling().accessDeniedPage("/403");
         ;
