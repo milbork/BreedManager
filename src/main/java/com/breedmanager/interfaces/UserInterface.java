@@ -3,6 +3,7 @@ package com.breedmanager.interfaces;
 
 import com.breedmanager.DTO.UserDTO;
 import com.breedmanager.entitis.Dog;
+import com.breedmanager.entitis.User;
 
 import java.util.List;
 
@@ -18,6 +19,8 @@ public interface UserInterface {
     String getUsersFunctionById(Long id);
 
     void removeUser(Long id);
+
+    User getUserById(Long id);
 
 
 }

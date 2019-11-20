@@ -1,8 +1,11 @@
 package com.breedmanager.controllers;
+
 import com.breedmanager.DTO.UserDTO;
 import com.breedmanager.data.CurrentUser;
 import com.breedmanager.entitis.User;
+import com.breedmanager.interfaces.UserInterface;
 import com.breedmanager.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,9 +17,11 @@ import javax.validation.Valid;
 @Controller
 public class UserController {
 
-    private UserService userService;
-    public UserController(UserService userService) {
-        this.userService = userService;
+    private UserInterface userInterface;
+
+    @Autowired
+    public UserController(UserInterface userInterface) {
+        this.userInterface = userInterface;
     }
 
     // REGISTRATION
@@ -29,13 +34,13 @@ public class UserController {
 
     @RequestMapping(path = {"/registration"}, method = RequestMethod.POST)
     public String addUser(@ModelAttribute("user") @Valid UserDTO userDTO,
-                                      BindingResult result) {
+                          BindingResult result) {
 
         if (result.hasErrors()) {
             return "user/addUser";
         }
 
-        userService.addUser(userDTO);
+        userInterface.addUser(userDTO);
         return "redirect:/login";
     }
 
@@ -43,8 +48,8 @@ public class UserController {
 
     @GetMapping(path = "/user")
     public String showUserPanel(Model model, @AuthenticationPrincipal CurrentUser customUser) {
-        model.addAttribute("username", userService.getUsersDataById(customUser.getUser().getId()));
-        model.addAttribute("function", userService.getUsersFunctionById(customUser.getUser().getId()));
+        model.addAttribute("username", userInterface.getUsersDataById(customUser.getUser().getId()));
+        model.addAttribute("function", userInterface.getUsersFunctionById(customUser.getUser().getId()));
         return "user/userPanel";
     }
 
@@ -65,7 +70,7 @@ public class UserController {
             return "user/editUser";
         }
         userDTO.setId(customUser.getUser().getId());
-        userService.editProfile(userDTO);
+        userInterface.editProfile(userDTO);
         return "redirect:/user";
     }
 
@@ -73,7 +78,7 @@ public class UserController {
 //    @RequestMapping(path = "/removeUser", method = RequestMethod.GET)
 //    public String deleteUser(@AuthenticationPrincipal CurrentUser customUser) {
 //        User entityUser = customUser.getUser();
-//        userService.removeUser(entityUser.getId());
+//        userInterface.removeUser(entityUser.getId());
 //        return "redirect:/index";
 //    }
 }

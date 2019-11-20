@@ -6,6 +6,7 @@ import com.breedmanager.entitis.User;
 import com.breedmanager.interfaces.UserInterface;
 import com.breedmanager.repositories.RoleRepository;
 import com.breedmanager.repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,7 @@ public class UserService implements UserInterface {
     private final BCryptPasswordEncoder passwordEncoder;
     private final RoleRepository roleRepository;
 
+    @Autowired
     public UserService(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder, RoleRepository roleRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
@@ -39,7 +41,6 @@ public class UserService implements UserInterface {
         User user = new User();
         user.setId(userDTO.getId());
         createUser(user, userDTO);
-
         userRepository.save(user);
     }
 
@@ -76,6 +77,7 @@ public class UserService implements UserInterface {
         userRepository.delete(userRepository.getOne(id));
     }
 
+    @Override
     public User getUserById(Long id) {
         return userRepository.findUserById(id);
     }

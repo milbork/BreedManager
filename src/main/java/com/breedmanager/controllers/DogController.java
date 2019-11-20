@@ -3,7 +3,8 @@ package com.breedmanager.controllers;
 import com.breedmanager.DTO.DogDTO;
 import com.breedmanager.data.CurrentUser;
 import com.breedmanager.entitis.User;
-import com.breedmanager.services.DogService;
+import com.breedmanager.interfaces.DogInterface;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,10 +20,11 @@ import javax.validation.Valid;
 @RequestMapping("/user/dog")
 public class DogController {
 
-    private DogService dogService;
+    private DogInterface dogInterface;
 
-    public DogController(DogService dogService) {
-        this.dogService = dogService;
+    @Autowired
+    public DogController(DogInterface dogInterface) {
+        this.dogInterface = dogInterface;
     }
 
 
@@ -37,13 +39,13 @@ public class DogController {
     public String addDog(@ModelAttribute("dog") @Valid DogDTO dogDTO,
                          BindingResult result,
                          @AuthenticationPrincipal CurrentUser customUser) {
-        System.out.println(dogDTO.getName());
+
         if (result.hasErrors()) {
             return "dog/addDog";
         }
         User entityUser = customUser.getUser();
         dogDTO.setOwner(entityUser);
-        dogService.addDog(dogDTO);
+        dogInterface.addDog(dogDTO);
         return "redirect:/user";
     }
 
@@ -65,21 +67,21 @@ public class DogController {
 
         dogDTO.setId(id);
         dogDTO.setOwner(customUser.getUser());
-        dogService.editDog(dogDTO);
+        dogInterface.editDog(dogDTO);
         return "redirect:/user";
     }
 
     @RequestMapping(path = "/remove/{id}", method = RequestMethod.GET)
     public String deleteDog(@PathVariable Long id) {
-        dogService.removeDog(id);
+        dogInterface.removeDog(id);
         return "redirect:/user";
     }
 
-    @RequestMapping(path = {"/user/dog/show"}, method = RequestMethod.GET)
+    @RequestMapping(path = {"/show"}, method = RequestMethod.GET)
     public String showDogs(Model model, @AuthenticationPrincipal CurrentUser customUser) {
-        model.addAttribute("doggo", dogService.showDogs(customUser.getUser().getId()));
-
+        model.addAttribute("doggo", dogInterface.showDogs(customUser.getUser().getId()));
         return "dog/showDogs";
     }
+
 
 }

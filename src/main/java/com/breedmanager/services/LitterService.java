@@ -6,6 +6,7 @@ import com.breedmanager.interfaces.LitterInterface;
 import com.breedmanager.repositories.DogRepository;
 import com.breedmanager.repositories.LitterRepository;
 import com.breedmanager.repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public class LitterService implements LitterInterface {
 
     private final LitterRepository litterRepository;
 
-
+    @Autowired
     public LitterService(LitterRepository litterRepository) {
         this.litterRepository = litterRepository;
     }
@@ -42,7 +43,6 @@ public class LitterService implements LitterInterface {
     public void updateLitter(LitterDTO litterDTO) {
         Litter litter = new Litter();
         litter.setId(litterDTO.getId());
-
         createLitter(litterDTO);
     }
 

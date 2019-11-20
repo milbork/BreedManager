@@ -3,17 +3,19 @@ package com.breedmanager.services;
 import com.breedmanager.DTO.MessageDTO;
 import com.breedmanager.entitis.Message;
 import com.breedmanager.entitis.User;
+import com.breedmanager.interfaces.MessageInterface;
 import com.breedmanager.repositories.MessageRepository;
-import com.breedmanager.repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class MessageService {
+public class MessageService implements MessageInterface {
 
     private MessageRepository messageRepository;
 
+    @Autowired
     public MessageService(MessageRepository messageRepository) {
         this.messageRepository = messageRepository;
     }

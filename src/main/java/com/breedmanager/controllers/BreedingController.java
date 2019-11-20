@@ -2,7 +2,9 @@ package com.breedmanager.controllers;
 
 import com.breedmanager.DTO.BreedingDTO;
 import com.breedmanager.data.CurrentUser;
+import com.breedmanager.interfaces.BreedingInterface;
 import com.breedmanager.services.BreedingService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,10 +19,11 @@ import javax.validation.Valid;
 @RequestMapping(path = "/user/breeding")
 public class BreedingController {
 
-    private BreedingService breedingService;
+    private BreedingInterface breedingInterface;
 
-    public BreedingController(BreedingService breedingService) {
-        this.breedingService = breedingService;
+    @Autowired
+    public BreedingController(BreedingInterface breedingInterface) {
+        this.breedingInterface = breedingInterface;
     }
 
 
@@ -37,19 +40,19 @@ public class BreedingController {
             return "breeding/addBreeding";
         }
 
-        if (breedingService.findBreedingByBreeder(currentUser.getUser()) != null) {
+        if (breedingInterface.findBreedingByBreeder(currentUser.getUser()) != null) {
             return "user/userPanel";
         }
 
         breedingDTO.setBreeder(currentUser.getUser());
-        breedingService.addBreeding(breedingDTO);
+        breedingInterface.addBreeding(breedingDTO);
 
         return "user/userPanel";
     }
 
     @RequestMapping(path = {"/show"}, method = RequestMethod.GET)
     public String showBreeding(Model model, @AuthenticationPrincipal CurrentUser customUser) {
-        model.addAttribute("breeding", breedingService.findBreedingByBreeder(customUser.getUser()));
+        model.addAttribute("breeding", breedingInterface.findBreedingByBreeder(customUser.getUser()));
         return "breeding/showBreeding";
     }
 
@@ -70,14 +73,14 @@ public class BreedingController {
 
         breedingDTO.setId(customUser.getUser().getBreeding().getId());
         breedingDTO.setBreeder(customUser.getUser());
-        breedingService.editBreeding(breedingDTO);
+        breedingInterface.editBreeding(breedingDTO);
 
         return "redirect:/user";
     }
 
     @RequestMapping(path = "/delete", method = RequestMethod.GET)
     public String deleteBreeding(@AuthenticationPrincipal CurrentUser currentUser) {
-        breedingService.deleteBreeding(currentUser.getUser().getId());
+        breedingInterface.deleteBreeding(currentUser.getUser().getId());
         return "breeding/show";
     }
 

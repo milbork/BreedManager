@@ -11,7 +11,7 @@ import javax.validation.constraints.Size;
 public class LitterDTO {
 
     private Long id;
-//    private Dog father;
+    //    private Dog father;
 //    private Dog mother;
     @NotBlank
     private String dogsBreed;
@@ -22,16 +22,19 @@ public class LitterDTO {
     private int amountOfPuppies;
     private Breeding breeding;
 
+    private boolean available;
+
 
     public LitterDTO() {
     }
 
-    public LitterDTO(Long id, @NotBlank String dogsBreed, @NotBlank @Size(min = 2, max = 30) String dateOfBirth, @Positive int amountOfPuppies, Breeding breeding) {
+    public LitterDTO(Long id, @NotBlank String dogsBreed, @NotBlank @Size(min = 2, max = 30) String dateOfBirth, @Positive int amountOfPuppies, Breeding breeding, boolean available) {
         this.id = id;
         this.dogsBreed = dogsBreed;
         this.dateOfBirth = dateOfBirth;
         this.amountOfPuppies = amountOfPuppies;
         this.breeding = breeding;
+        this.available = available;
     }
 
     public Long getId() {
@@ -72,5 +75,13 @@ public class LitterDTO {
 
     public void setBreeding(Breeding breeding) {
         this.breeding = breeding;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
     }
 }

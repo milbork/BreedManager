@@ -16,17 +16,18 @@ public class Litter {
     private String dogsBreed;
     private String dateOfBirth;
     private int amountOfPuppies;
+    private boolean available;
 
 
     public Litter() {
     }
 
-    public Litter(Breeding breeding, String dogsBreed, String dateOfBirth, int amountOfPuppies) {
+    public Litter(Breeding breeding, String dogsBreed, String dateOfBirth, int amountOfPuppies, boolean available) {
         this.breeding = breeding;
         this.dogsBreed = dogsBreed;
         this.dateOfBirth = dateOfBirth;
         this.amountOfPuppies = amountOfPuppies;
-
+        this.available = available;
     }
 
     public Long getId() {
@@ -67,6 +68,14 @@ public class Litter {
 
     public void setAmountOfPuppies(int amountOfPuppies) {
         this.amountOfPuppies = amountOfPuppies;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
     }
 }
 

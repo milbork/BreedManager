@@ -2,8 +2,9 @@ package com.breedmanager.controllers;
 
 import com.breedmanager.DTO.LitterDTO;
 import com.breedmanager.data.CurrentUser;
-import com.breedmanager.entitis.User;
+import com.breedmanager.interfaces.LitterInterface;
 import com.breedmanager.services.LitterService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,10 +20,11 @@ import javax.validation.Valid;
 @RequestMapping("/user/litter")
 public class LitterController {
 
-    private LitterService litterService;
+    private LitterInterface litterInterface;
 
-    public LitterController(LitterService litterService) {
-        this.litterService = litterService;
+    @Autowired
+    public LitterController(LitterService litterInterface) {
+        this.litterInterface = litterInterface;
     }
 
     @RequestMapping(path = {"/add"}, method = RequestMethod.GET)
@@ -42,13 +44,13 @@ public class LitterController {
 
         litterDTO.setBreeding(customUser.getUser().getBreeding());
         System.out.println(litterDTO.getBreeding());
-        litterService.createLitter(litterDTO);
+        litterInterface.createLitter(litterDTO);
         return "redirect:/user";
     }
 
     @RequestMapping(path = {"/show"}, method = RequestMethod.GET)
     public String showLitter(Model model, @AuthenticationPrincipal CurrentUser customUser) {
-        model.addAttribute("litter", litterService.getLitters(customUser.getUser().getBreeding().getName()));
+        model.addAttribute("litter", litterInterface.getLitters(customUser.getUser().getBreeding().getName()));
         return "litter/litters";
     }
 
@@ -68,13 +70,13 @@ public class LitterController {
         }
         litterDTO.setId(id);
         litterDTO.setBreeding(customUser.getUser().getBreeding());
-        litterService.updateLitter(litterDTO);
+        litterInterface.updateLitter(litterDTO);
         return "redirect:/user";
     }
 
     @RequestMapping(path = "/remove/{id}", method = RequestMethod.GET)
     public String removeLitter(@PathVariable Long id) {
-        litterService.deleteLitter(id);
+        litterInterface.deleteLitter(id);
         return "redirect:/user";
     }
 }
