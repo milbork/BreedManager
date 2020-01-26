@@ -7,12 +7,15 @@ import com.breedmanager.repositories.DogRepository;
 import com.breedmanager.repositories.LitterRepository;
 import com.breedmanager.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Set;
 
 @Service
+@CacheConfig(cacheNames = {"litterCache"})
 public class LitterService implements LitterInterface {
 
 
@@ -35,6 +38,7 @@ public class LitterService implements LitterInterface {
     }
 
     @Override
+    @Cacheable
     public Set<Litter> readLitter(LitterDTO litterDTO) {
         return litterRepository.findAllByBreedingName(litterDTO.getBreeding().getName());
     }

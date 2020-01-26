@@ -7,6 +7,7 @@ import com.breedmanager.interfaces.UserInterface;
 import com.breedmanager.repositories.RoleRepository;
 import com.breedmanager.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 
 @Service
+@CacheConfig(cacheNames = {"userCache"})
 public class UserService implements UserInterface {
 
 

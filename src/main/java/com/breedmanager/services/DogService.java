@@ -5,12 +5,15 @@ import com.breedmanager.entitis.Dog;
 import com.breedmanager.interfaces.DogInterface;
 import com.breedmanager.repositories.DogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 
 @Service
+@CacheConfig(cacheNames = {"dogCache"})
 public class DogService implements DogInterface {
 
     private final DogRepository dogRepository;
@@ -27,6 +30,7 @@ public class DogService implements DogInterface {
     }
 
     @Override
+    @Cacheable
     public List<Dog> showDogs(Long id) {
         return dogRepository.findAllByOwnerId(id);
     }

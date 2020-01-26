@@ -19,7 +19,7 @@
             <td><form:errors path="available" cssClass="error"/></td>
         </tr>
         <tr>
-            <td colspan="2"><input type="submit" value="Save"></td>
+            <td colspan="2"><input type="submit" value="Search"></td>
         </tr>
     </form:form>
 </table>

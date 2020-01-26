@@ -6,9 +6,12 @@ import com.breedmanager.entitis.User;
 import com.breedmanager.interfaces.BreedingInterface;
 import com.breedmanager.repositories.BreedingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 @Service
+@CacheConfig(cacheNames={"breeding"})
 public class BreedingService implements BreedingInterface {
 
     private final BreedingRepository breedingRepository;
@@ -37,6 +40,7 @@ public class BreedingService implements BreedingInterface {
     }
 
     @Override
+    @Cacheable
     public Breeding findBreedingByBreeder(User user) {
         return breedingRepository.findBreedingByBreeder(user);
     }
@@ -48,4 +52,8 @@ public class BreedingService implements BreedingInterface {
         breeding.setAvailable(breedingDTO.getAvailable());
         breedingRepository.save(breeding);
     }
+
+
+
+
 }

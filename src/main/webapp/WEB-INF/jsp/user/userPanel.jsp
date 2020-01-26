@@ -11,9 +11,11 @@
 <br><br>
 Hello ${username}<br>
 ${function}
-<br><br>
+<br>
+<a href='<c:url value= "/user/search"/>'><input type="button" value="search"></a>
+<br>
 
-</table>
+
 <br><br>
 <a href='<c:url value= "/user/edit"/>'><input type="button" value="Edit your profile"></a>
 <br><br>
