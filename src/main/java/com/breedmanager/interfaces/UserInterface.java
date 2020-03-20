@@ -2,7 +2,7 @@ package com.breedmanager.interfaces;
 
 
 import com.breedmanager.DTO.UserDTO;
-import com.breedmanager.entitis.Dog;
+
 import com.breedmanager.entitis.User;
 
 import java.util.List;
@@ -22,5 +22,6 @@ public interface UserInterface {
 
     User getUserById(Long id);
 
+    boolean checkIfUserAlreadyExist(UserDTO user);
 
 }

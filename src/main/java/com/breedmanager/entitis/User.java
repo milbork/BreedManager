@@ -35,6 +35,10 @@ public class User {
 
     public User() {
     }
+    public User(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 
     public User(String function, String firstName, String lastName, String password, int enabled, String email, Set<Role> roles, Breeding breeding,
                 List<Dog> dogs, List<Message> sentMessages, List<Message> receivedMessages) {

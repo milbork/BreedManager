@@ -36,7 +36,7 @@ public class UserController {
     public String addUser(@ModelAttribute("user") @Valid UserDTO userDTO,
                           BindingResult result) {
 
-        if (result.hasErrors()) {
+        if (result.hasErrors() || userInterface.checkIfUserAlreadyExist(userDTO)) {
             return "user/addUser";
         }
 

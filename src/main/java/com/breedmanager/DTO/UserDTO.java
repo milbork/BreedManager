@@ -35,6 +35,10 @@ public class UserDTO {
     public UserDTO() {
     }
 
+    public UserDTO(@NotBlank @Email String email) {
+        this.email = email;
+    }
+
     public UserDTO(Long id, @NotBlank @Size(min = 2, max = 30) String firstName, @NotBlank @Size(min = 2, max = 30) String lastName, @NotBlank @Size(min = 2, max = 30) String password, @NotBlank @Email String email, @NotNull String function,
                    Breeding breeding, List<Message> sentMessages, List<Message> receivedMessages) {
         this.id = id;

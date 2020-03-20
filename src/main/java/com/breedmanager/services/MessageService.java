@@ -23,19 +23,21 @@ public class MessageService implements MessageInterface {
         this.messageRepository = messageRepository;
     }
 
-    public void sendMessage(MessageDTO messageDTO){
+    public void sendMessage(MessageDTO messageDTO) {
         Message message = new Message();
         message.setSender(messageDTO.getSender());
         message.setReceiver(messageDTO.getReceiver());
         message.setMessage(messageDTO.getMessage());
         messageRepository.save(message);
     }
+
     @Cacheable
-    public List<Message> findAllByReceiver(User user){
+    public List<Message> findAllByReceiver(User user) {
         return messageRepository.findMessagesByReceiver(user);
     }
+
     @Cacheable
-    public List<Message> findAllBySender(User user){
+    public List<Message> findAllBySender(User user) {
         return messageRepository.findMessagesBySender(user);
     }
 }
