@@ -55,6 +55,13 @@ public class DogService implements DogInterface {
         dog.setOwner(dogDTO.getOwner());
         dogRepository.save(dog);
     }
+
+    @Override
+    public boolean checkIfDogAlreadyExist(DogDTO dogDTO) {
+        return dogRepository.findByOwnerAndDateOfBirthAndBreedAndName(dogDTO.getOwner(), dogDTO.getDateOfBirth(),
+                dogDTO.getBreed(), dogDTO.getName()) == null;
+
+    }
 }
 
 

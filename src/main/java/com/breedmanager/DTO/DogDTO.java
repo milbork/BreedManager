@@ -23,6 +23,14 @@ public class DogDTO {
     public DogDTO() {
     }
 
+    public DogDTO(@NotBlank @Size(min = 2, max = 30) String breed, @NotBlank @Size(min = 2, max = 30) String name,
+                  User owner, @NotBlank @Size(min = 2, max = 30) String dateOfBirth) {
+        this.breed = breed;
+        this.name = name;
+        this.owner = owner;
+        this.dateOfBirth = dateOfBirth;
+    }
+
     public DogDTO(Long id, @NotBlank @Size(min = 2, max = 30) String breed,
                   @NotBlank @Size(min = 2, max = 30) String name, User owner,
                   @NotBlank @Size(min = 2, max = 30) String dateOfBirth) {

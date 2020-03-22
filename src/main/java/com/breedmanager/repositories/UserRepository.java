@@ -12,7 +12,7 @@ import java.util.Set;
 @EnableJpaRepositories(basePackages = "com.breedmanager.repositories")
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    User findByEmail(String email);
+    User findUserByEmail(String email);
 
     User findUserById(Long id);
 

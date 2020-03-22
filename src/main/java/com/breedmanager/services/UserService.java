@@ -33,8 +33,7 @@ public class UserService implements UserInterface {
     @Override
     public void addUser(UserDTO userDTO) {
         User user = new User();
-        createUser(user, userDTO);
-        userRepository.save(user);
+        userRepository.save(createUser(user, userDTO));
     }
 
     @Override
@@ -61,9 +60,10 @@ public class UserService implements UserInterface {
         user.setEnabled(1);
         return user;
     }
+
     @Override
     public boolean checkIfUserAlreadyExist(UserDTO user) {
-        return userRepository.findByEmail(user.getEmail()) == null;
+        return userRepository.findUserByEmail(user.getEmail()) != null;
 
     }
 

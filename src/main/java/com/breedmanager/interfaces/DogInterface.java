@@ -15,5 +15,6 @@ public interface DogInterface {
 
     void removeDog(Long id);
 
+    boolean checkIfDogAlreadyExist(DogDTO dogDTO);
 
 }

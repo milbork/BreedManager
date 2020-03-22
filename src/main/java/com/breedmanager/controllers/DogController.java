@@ -31,7 +31,7 @@ public class DogController {
     @RequestMapping(path = {"/add"}, method = RequestMethod.GET)
     public String addDog(Model model) {
         model.addAttribute("dog", new DogDTO());
-        System.out.println("bangla");
+
         return "dog/addDog";
     }
 
@@ -40,7 +40,7 @@ public class DogController {
                          BindingResult result,
                          @AuthenticationPrincipal CurrentUser customUser) {
 
-        if (result.hasErrors()) {
+        if (result.hasErrors() || dogInterface.checkIfDogAlreadyExist(dogDTO)) {
             return "dog/addDog";
         }
         User entityUser = customUser.getUser();
