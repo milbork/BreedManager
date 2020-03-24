@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Optional;
 
 @Service
 @CacheConfig(cacheNames = {"userCache"})
@@ -63,8 +64,18 @@ public class UserService implements UserInterface {
 
     @Override
     public boolean checkIfUserAlreadyExist(UserDTO user) {
-        return userRepository.findUserByEmail(user.getEmail()) != null;
+        Optional<User> optional = Optional.ofNullable(userRepository.findUserByEmail(user.getEmail()));
+        return optional.isPresent();
 
+    }
+    @Override
+    public boolean checkIfEmailIsAlreadyUsed(String currentEmail, UserDTO userDTO){
+
+        if (currentEmail.equalsIgnoreCase(userDTO.getEmail())) {
+            return false ;
+        } else {
+            return checkIfUserAlreadyExist(userDTO);
+        }
     }
 
 

@@ -24,4 +24,6 @@ public interface UserInterface {
 
     boolean checkIfUserAlreadyExist(UserDTO user);
 
+    boolean checkIfEmailIsAlreadyUsed(String currentEmail, UserDTO userDTO);
+
 }

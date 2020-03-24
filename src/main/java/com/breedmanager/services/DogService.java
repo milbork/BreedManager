@@ -10,6 +10,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -58,10 +59,13 @@ public class DogService implements DogInterface {
 
     @Override
     public boolean checkIfDogAlreadyExist(DogDTO dogDTO) {
-        return dogRepository.findByOwnerAndDateOfBirthAndBreedAndName(dogDTO.getOwner(), dogDTO.getDateOfBirth(),
-                dogDTO.getBreed(), dogDTO.getName()) == null;
 
+        Optional<Dog> optionalDog = Optional.ofNullable(dogRepository.findByOwnerAndDateOfBirthAndBreedAndName
+                (dogDTO.getOwner(), dogDTO.getDateOfBirth(), dogDTO.getBreed(), dogDTO.getName()));
+
+        return optionalDog.isPresent();
     }
+
 }
 
 

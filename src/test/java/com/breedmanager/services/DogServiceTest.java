@@ -11,7 +11,7 @@ import static org.mockito.Mockito.when;
 class DogServiceTest {
 
     @Test
-    void shouldReturnTrueIfDogDoesNotExist() {
+    void shouldReturnFalseIfDogDoesNotExist() {
 
         DogRepository dogRepository = mock(DogRepository.class);
         DogService dogService = new DogService(dogRepository);
@@ -19,7 +19,7 @@ class DogServiceTest {
         when(dogRepository.findByOwnerAndDateOfBirthAndBreedAndName(user, "01.01.2001", "golden", "burek"))
                 .thenReturn(null);
 
-        Assertions.assertTrue(
+        Assertions.assertFalse(
         dogService.checkIfDogAlreadyExist(new DogDTO("golden", "burek", user, "01.01.2001")));
     }
 }

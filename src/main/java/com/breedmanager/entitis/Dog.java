@@ -1,8 +1,6 @@
 package com.breedmanager.entitis;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.util.List;
 
 @Entity
 @Table(name = "dog")
@@ -68,6 +66,15 @@ public class Dog {
         this.dateOfBirth = dateOfBirth;
     }
 
+
+    @Override
+    public String toString() {
+        return "Dog{" +
+                "breed='" + breed + '\'' +
+                ", name='" + name + '\'' +
+                ", dateOfBirth='" + dateOfBirth + '\'' +
+                '}';
+    }
 }
 
 

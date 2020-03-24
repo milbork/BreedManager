@@ -66,7 +66,8 @@ public class UserController {
                            BindingResult result,
                            @AuthenticationPrincipal CurrentUser customUser) {
 
-        if (result.hasErrors()) {
+        if (result.hasErrors() ||
+                userInterface.checkIfEmailIsAlreadyUsed(customUser.getUser().getEmail(), userDTO)) {
             return "user/editUser";
         }
         userDTO.setId(customUser.getUser().getId());
