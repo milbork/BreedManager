@@ -5,6 +5,7 @@ import com.breedmanager.entitis.User;
 import com.breedmanager.repositories.RoleRepository;
 import com.breedmanager.repositories.UserRepository;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -13,13 +14,21 @@ import static org.mockito.Mockito.when;
 
 class UserServiceTest {
 
+    UserRepository userRepository;
+    BCryptPasswordEncoder passwordEncoder;
+    RoleRepository roleRepository;
+    UserService userService;
+
+    @BeforeEach
+    void initialize() {
+        userRepository = mock(UserRepository.class);
+        passwordEncoder = new BCryptPasswordEncoder();
+        roleRepository = mock(RoleRepository.class);
+        userService = new UserService(userRepository, passwordEncoder, roleRepository);
+    }
+
     @Test
     void shouldReturnFalseIfUserDoesNotExist() {
-
-        UserRepository userRepository = mock(UserRepository.class);
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        RoleRepository roleRepository = mock(RoleRepository.class);
-        UserService userService = new UserService(userRepository, passwordEncoder, roleRepository);
 
         when(userRepository.findUserByEmail("abc@xyz.com")).thenReturn(null);
 
@@ -31,13 +40,21 @@ class UserServiceTest {
 
         User user = new User();
         UserDTO userDTO = new UserDTO("aaa@abc.abc");
-        UserRepository userRepository = mock(UserRepository.class);
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        RoleRepository roleRepository = mock(RoleRepository.class);
-        UserService userService = new UserService(userRepository, passwordEncoder, roleRepository);
 
         when(userRepository.findUserByEmail("aaa@abc.abc")).thenReturn(user);
 
         Assertions.assertTrue(userService.checkIfEmailIsAlreadyUsed("abc@abc.abc", userDTO));
     }
+
+    @Test
+    void shouldPassIfObjectsAreEquals() {
+    // test created only for education purpose, dosen't have logical value
+
+        User user = new User(1L, "Jan", "Kowalski");
+        when(userRepository.findUserById(1L)).thenReturn(user);
+
+        Assertions.assertEquals(user ,userRepository.findUserById(1L));
+    }
+
+
 }

@@ -19,7 +19,6 @@ import java.util.Optional;
 @CacheConfig(cacheNames = {"userCache"})
 public class UserService implements UserInterface {
 
-
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
     private final RoleRepository roleRepository;
@@ -32,7 +31,7 @@ public class UserService implements UserInterface {
     }
 
     @Override
-    public void addUser(UserDTO userDTO) {
+    public void createUser(UserDTO userDTO) {
         User user = new User();
         userRepository.save(createUser(user, userDTO));
     }
@@ -79,15 +78,11 @@ public class UserService implements UserInterface {
     }
 
 
-    @Override
-    public String getUsersDataById(Long id) {
-        return userRepository.findUserById(id).getFirstName();
-    }
 
-    @Override
-    public String getUsersFunctionById(Long id) {
-        return userRepository.findUserById(id).getFunction();
-    }
+//    @Override
+//    public String getUsersFunctionById(Long id) {
+//        return userRepository.findUserById(id).getFunction();
+//    }
 
     @Override
     public void removeUser(Long id) {

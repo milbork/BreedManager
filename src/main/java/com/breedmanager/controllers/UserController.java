@@ -4,7 +4,6 @@ import com.breedmanager.DTO.UserDTO;
 import com.breedmanager.data.CurrentUser;
 import com.breedmanager.entitis.User;
 import com.breedmanager.interfaces.UserInterface;
-import com.breedmanager.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -40,7 +39,7 @@ public class UserController {
             return "user/addUser";
         }
 
-        userInterface.addUser(userDTO);
+        userInterface.createUser(userDTO);
         return "redirect:/login";
     }
 
@@ -48,8 +47,8 @@ public class UserController {
 
     @GetMapping(path = "/user")
     public String showUserPanel(Model model, @AuthenticationPrincipal CurrentUser customUser) {
-        model.addAttribute("username", userInterface.getUsersDataById(customUser.getUser().getId()));
-        model.addAttribute("function", userInterface.getUsersFunctionById(customUser.getUser().getId()));
+        model.addAttribute("username", customUser.getUser().getFirstName());
+        model.addAttribute("function", customUser.getUser().getFunction());
         return "user/userPanel";
     }
 
