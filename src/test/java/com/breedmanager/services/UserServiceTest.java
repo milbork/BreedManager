@@ -14,10 +14,10 @@ import static org.mockito.Mockito.when;
 
 class UserServiceTest {
 
-    UserRepository userRepository;
-    BCryptPasswordEncoder passwordEncoder;
-    RoleRepository roleRepository;
-    UserService userService;
+    private UserRepository userRepository;
+    private BCryptPasswordEncoder passwordEncoder;
+    private RoleRepository roleRepository;
+    private UserService userService;
 
     @BeforeEach
     void initialize() {
@@ -48,12 +48,12 @@ class UserServiceTest {
 
     @Test
     void shouldPassIfObjectsAreEquals() {
-    // test created only for education purpose, dosen't have logical value
+        // test created only for education purpose, dosen't have logical value
 
         User user = new User(1L, "Jan", "Kowalski");
         when(userRepository.findUserById(1L)).thenReturn(user);
 
-        Assertions.assertEquals(user ,userRepository.findUserById(1L));
+        Assertions.assertEquals(user, userRepository.findUserById(1L));
     }
 
 

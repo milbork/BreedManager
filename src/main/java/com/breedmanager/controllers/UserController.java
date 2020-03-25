@@ -11,6 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 @Controller
@@ -46,9 +49,15 @@ public class UserController {
     // DISPLAY USER
 
     @GetMapping(path = "/user")
-    public String showUserPanel(Model model, @AuthenticationPrincipal CurrentUser customUser) {
+    public String showUserPanel(HttpServletRequest request, HttpServletResponse response,
+                                Model model, @AuthenticationPrincipal CurrentUser customUser) {
+
+        Cookie cookie = new Cookie("name", customUser.getUser().getFirstName());
+        response.addCookie(cookie);
+
         model.addAttribute("username", customUser.getUser().getFirstName());
         model.addAttribute("function", customUser.getUser().getFunction());
+
         return "user/userPanel";
     }
 

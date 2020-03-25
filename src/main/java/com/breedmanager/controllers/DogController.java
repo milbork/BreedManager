@@ -2,7 +2,6 @@ package com.breedmanager.controllers;
 
 import com.breedmanager.DTO.DogDTO;
 import com.breedmanager.data.CurrentUser;
-import com.breedmanager.entitis.User;
 import com.breedmanager.interfaces.DogInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -43,8 +42,8 @@ public class DogController {
         if (result.hasErrors() || dogInterface.checkIfDogAlreadyExist(dogDTO)) {
             return "dog/addDog";
         }
-        User entityUser = customUser.getUser();
-        dogDTO.setOwner(entityUser);
+
+        dogDTO.setOwner(customUser.getUser());
         dogInterface.addDog(dogDTO);
         return "redirect:/user";
     }

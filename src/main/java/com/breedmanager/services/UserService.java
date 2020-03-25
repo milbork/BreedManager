@@ -33,18 +33,18 @@ public class UserService implements UserInterface {
     @Override
     public void createUser(UserDTO userDTO) {
         User user = new User();
-        userRepository.save(createUser(user, userDTO));
+        userRepository.save(createOrEditUser(user, userDTO));
     }
 
     @Override
     public void editProfile(UserDTO userDTO) {
         User user = new User();
         user.setId(userDTO.getId());
-        createUser(user, userDTO);
+        createOrEditUser(user, userDTO);
         userRepository.save(user);
     }
 
-    private User createUser(User user, UserDTO userDTO) {
+    private User createOrEditUser(User user, UserDTO userDTO) {
         user.setFirstName(userDTO.getFirstName());
         user.setLastName(userDTO.getLastName());
         user.setEmail(userDTO.getEmail());
@@ -76,13 +76,6 @@ public class UserService implements UserInterface {
             return checkIfUserAlreadyExist(userDTO);
         }
     }
-
-
-
-//    @Override
-//    public String getUsersFunctionById(Long id) {
-//        return userRepository.findUserById(id).getFunction();
-//    }
 
     @Override
     public void removeUser(Long id) {
