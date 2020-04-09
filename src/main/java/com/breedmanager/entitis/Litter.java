@@ -22,6 +22,10 @@ public class Litter {
     public Litter() {
     }
 
+    public Litter(Breeding breeding) {
+        this.breeding = breeding;
+    }
+
     public Litter(Breeding breeding, String dogsBreed, String dateOfBirth, int amountOfPuppies, boolean available) {
         this.breeding = breeding;
         this.dogsBreed = dogsBreed;

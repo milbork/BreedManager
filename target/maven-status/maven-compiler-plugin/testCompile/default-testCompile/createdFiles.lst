@@ -1,3 +1,4 @@
-com/breedmanager/services/DogServiceTest.class
 com/breedmanager/services/UserServiceTest.class
 com/breedmanager/services/MessageServiceTest.class
+com/breedmanager/repositories/UserRepositoryTest.class
+com/breedmanager/services/DogServiceTest.class

@@ -33,6 +33,17 @@ public class Breeding {
         this.available = available;
     }
 
+    public Breeding(String name) {
+        this.name = name;
+    }
+
+    public Breeding(String name, String dogsBreed, User breeder, String available) {
+        this.name = name;
+        this.dogsBreed = dogsBreed;
+        this.breeder = breeder;
+        this.available = available;
+    }
+
     public Long getId() {
         return id;
     }

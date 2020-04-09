@@ -3,6 +3,7 @@ package com.breedmanager.interfaces;
 import com.breedmanager.DTO.MessageDTO;
 import com.breedmanager.entitis.Message;
 import com.breedmanager.entitis.User;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 
 import java.util.List;
 

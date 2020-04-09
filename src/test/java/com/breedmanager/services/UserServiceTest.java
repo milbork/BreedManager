@@ -50,7 +50,7 @@ class UserServiceTest {
     void shouldPassIfObjectsAreEquals() {
         // test created only for education purpose, dosen't have logical value
 
-        User user = new User(1L, "Jan", "Kowalski");
+        User user = new User("Jan", "Kowalski", "aaa@aa.aa");
         when(userRepository.findUserById(1L)).thenReturn(user);
 
         Assertions.assertEquals(user, userRepository.findUserById(1L));

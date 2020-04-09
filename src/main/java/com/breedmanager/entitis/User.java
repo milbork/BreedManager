@@ -41,11 +41,15 @@ public class User {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
+
     }
 
-    public User(String firstName, String lastName) {
+    public User(String firstName, String lastName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.email = email;
+
+
     }
 
     public User(String function, String firstName, String lastName, String password, int enabled, String email, Set<Role> roles, Breeding breeding,
