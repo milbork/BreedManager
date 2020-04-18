@@ -1,9 +1,12 @@
 package com.breedmanager.entitis;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "litter")
+@Data
 public class Litter {
 
     @Id
@@ -34,53 +37,6 @@ public class Litter {
         this.available = available;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Breeding getBreeding() {
-        return breeding;
-    }
-
-    public void setBreeding(Breeding breeding) {
-        this.breeding = breeding;
-    }
-
-    public String getDogsBreed() {
-        return dogsBreed;
-    }
-
-    public void setDogsBreed(String dogsBreed) {
-        this.dogsBreed = dogsBreed;
-    }
-
-    public String getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public void setDateOfBirth(String dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
-    public int getAmountOfPuppies() {
-        return amountOfPuppies;
-    }
-
-    public void setAmountOfPuppies(int amountOfPuppies) {
-        this.amountOfPuppies = amountOfPuppies;
-    }
-
-    public boolean isAvailable() {
-        return available;
-    }
-
-    public void setAvailable(boolean available) {
-        this.available = available;
-    }
 }
 
 
