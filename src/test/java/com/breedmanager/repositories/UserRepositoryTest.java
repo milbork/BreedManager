@@ -1,7 +1,7 @@
 package com.breedmanager.repositories;
 
 import com.breedmanager.Application;
-import com.breedmanager.entitis.User;
+import com.breedmanager.model.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureTestEntityManager;

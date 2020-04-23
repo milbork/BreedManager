@@ -1,7 +1,7 @@
 package com.breedmanager.security;
 
-import com.breedmanager.data.CurrentUser;
-import com.breedmanager.entitis.User;
+import com.breedmanager.configuration.CurrentUser;
+import com.breedmanager.model.User;
 import com.breedmanager.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;

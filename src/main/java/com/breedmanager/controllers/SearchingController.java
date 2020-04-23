@@ -1,7 +1,7 @@
 package com.breedmanager.controllers;
 
-import com.breedmanager.DTO.BreedingDTO;
-import com.breedmanager.services.SearchService;
+import com.breedmanager.model.DTO.BreedingDTO;
+import com.breedmanager.services.search.SearchServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class SearchingController {
 
 
-    private SearchService searchService;
+    private SearchServiceImpl searchServiceImpl;
 
-    public SearchingController(SearchService searchService) {
-        this.searchService = searchService;
+    public SearchingController(SearchServiceImpl searchServiceImpl) {
+        this.searchServiceImpl = searchServiceImpl;
     }
 
     @RequestMapping(path = "/user/search", method = RequestMethod.GET)
@@ -27,14 +27,14 @@ public class SearchingController {
 
     @RequestMapping(path = "/user/search", method = RequestMethod.POST)
     public String findBreeder(Model model, @ModelAttribute("search") BreedingDTO searchDTO, BindingResult result) {
-        model.addAttribute("search", searchService.searchForBreedings(searchDTO));
+        model.addAttribute("search", searchServiceImpl.searchForBreedings(searchDTO));
         showBreeder(model, searchDTO);
         return "user/search/searchingResults";
     }
 
     @RequestMapping(path = {"/user/search/results"}, method = RequestMethod.GET)
     public String showBreeder(Model model, BreedingDTO searchDTO) {
-        model.addAttribute("find", searchService.searchForBreedings(searchDTO));
+        model.addAttribute("find", searchServiceImpl.searchForBreedings(searchDTO));
 
         return "user/search/searchingResults";
     }

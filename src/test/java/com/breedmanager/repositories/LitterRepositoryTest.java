@@ -1,8 +1,8 @@
 package com.breedmanager.repositories;
 
 import com.breedmanager.Application;
-import com.breedmanager.entitis.Breeding;
-import com.breedmanager.entitis.Litter;
+import com.breedmanager.model.Breeding;
+import com.breedmanager.model.Litter;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureTestEntityManager;
@@ -14,7 +14,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(classes = Application.class)
 @AutoConfigureTestEntityManager

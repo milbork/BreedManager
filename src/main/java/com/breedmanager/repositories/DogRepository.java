@@ -1,13 +1,11 @@
 package com.breedmanager.repositories;
 
-import com.breedmanager.entitis.Dog;
-import com.breedmanager.entitis.User;
+import com.breedmanager.model.Dog;
+import com.breedmanager.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface DogRepository extends JpaRepository<Dog, Long> {

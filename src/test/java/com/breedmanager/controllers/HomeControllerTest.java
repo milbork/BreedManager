@@ -27,11 +27,5 @@ class HomeControllerTest {
 
     @Test
     void start() throws Exception {
-
-        mockMvc.perform(post("/")
-                .contentType("application/json"))
-                .andExpect(status().isForbidden());
-
-
     }
 }

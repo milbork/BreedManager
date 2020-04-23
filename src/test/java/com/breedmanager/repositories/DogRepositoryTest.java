@@ -1,9 +1,8 @@
 package com.breedmanager.repositories;
 
 import com.breedmanager.Application;
-import com.breedmanager.DTO.LitterDTO;
-import com.breedmanager.entitis.Dog;
-import com.breedmanager.entitis.User;
+import com.breedmanager.model.Dog;
+import com.breedmanager.model.User;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

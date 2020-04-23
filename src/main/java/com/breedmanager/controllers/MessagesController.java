@@ -1,9 +1,9 @@
 package com.breedmanager.controllers;
 
-import com.breedmanager.DTO.MessageDTO;
-import com.breedmanager.data.CurrentUser;
-import com.breedmanager.interfaces.MessageInterface;
-import com.breedmanager.interfaces.UserInterface;
+import com.breedmanager.model.DTO.MessageDTO;
+import com.breedmanager.configuration.CurrentUser;
+import com.breedmanager.services.message.MessageService;
+import com.breedmanager.services.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -19,13 +19,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping(path = {"/user/message"})
 public class MessagesController {
 
-    private MessageInterface messageInterface;
-    private UserInterface userInterface;
+    private MessageService messageService;
+    private UserService userService;
 
     @Autowired
-    public MessagesController(MessageInterface messageInterface, UserInterface userInterface) {
-        this.messageInterface = messageInterface;
-        this.userInterface = userInterface;
+    public MessagesController(MessageService messageService, UserService userService) {
+        this.messageService = messageService;
+        this.userService = userService;
     }
 
     @RequestMapping(path = {"/send/{id}"}, method = RequestMethod.GET)
@@ -44,20 +44,20 @@ public class MessagesController {
         }
 
         messageDTO.setSender(currentUser.getUser());
-        messageDTO.setReceiver(userInterface.getUserById(id));
-        messageInterface.sendMessage(messageDTO);
+        messageDTO.setReceiver(userService.getUserById(id));
+        messageService.sendMessage(messageDTO);
         return "/user/userPanel";
     }
 
     @RequestMapping(path = {"/inbox"}, method = RequestMethod.GET)
     public String getMessagesByRecipient(Model model, @AuthenticationPrincipal CurrentUser currentUser) {
-        model.addAttribute("inbox", messageInterface.findAllByReceiver(currentUser.getUser()));
+        model.addAttribute("inbox", messageService.findAllByReceiver(currentUser.getUser()));
         return "user/message/inbox";
     }
 
     @RequestMapping(path = {"/sent"}, method = RequestMethod.GET)
     public String getMessagesBySender(Model model, @AuthenticationPrincipal CurrentUser currentUser) {
-        model.addAttribute("sent", messageInterface.findAllBySender(currentUser.getUser()));
+        model.addAttribute("sent", messageService.findAllBySender(currentUser.getUser()));
         return "user/message/sent";
     }
 

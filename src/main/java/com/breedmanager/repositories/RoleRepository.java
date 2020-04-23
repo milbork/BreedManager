@@ -1,6 +1,6 @@
 package com.breedmanager.repositories;
 
-import com.breedmanager.entitis.Role;
+import com.breedmanager.model.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

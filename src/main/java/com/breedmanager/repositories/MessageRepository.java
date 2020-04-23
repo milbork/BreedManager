@@ -1,7 +1,7 @@
 package com.breedmanager.repositories;
 
-import com.breedmanager.entitis.Message;
-import com.breedmanager.entitis.User;
+import com.breedmanager.model.Message;
+import com.breedmanager.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

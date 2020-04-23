@@ -1,9 +1,8 @@
 package com.breedmanager.controllers;
 
-import com.breedmanager.DTO.UserDTO;
-import com.breedmanager.data.CurrentUser;
-import com.breedmanager.entitis.User;
-import com.breedmanager.interfaces.UserInterface;
+import com.breedmanager.model.DTO.UserDTO;
+import com.breedmanager.configuration.CurrentUser;
+import com.breedmanager.services.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -19,30 +18,30 @@ import javax.validation.Valid;
 @Controller
 public class UserController {
 
-    private UserInterface userInterface;
+    private UserService userService;
 
     @Autowired
-    public UserController(UserInterface userInterface) {
-        this.userInterface = userInterface;
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
     // REGISTRATION
 
-    @RequestMapping(path = {"/registration"}, method = RequestMethod.GET)
+    @GetMapping(path = {"/registration"})
     public String addUser(Model model) {
         model.addAttribute("user", new UserDTO());
         return "user/addUser";
     }
 
-    @RequestMapping(path = {"/registration"}, method = RequestMethod.POST)
+    @PostMapping(path = {"/registration"})
     public String addUser(@ModelAttribute("user") @Valid UserDTO userDTO,
                           BindingResult result) {
 
-        if (result.hasErrors() || userInterface.checkIfUserAlreadyExist(userDTO)) {
+        if (result.hasErrors() || userService.checkIfUserAlreadyExist(userDTO)) {
             return "user/addUser";
         }
 
-        userInterface.createUser(userDTO);
+        userService.createUser(userDTO);
         return "redirect:/login";
     }
 
@@ -63,23 +62,23 @@ public class UserController {
 
     // EDIT
 
-    @RequestMapping(path = {"/user/edit"}, method = RequestMethod.GET)
+    @GetMapping(path = {"/user/edit"})
     public String editUser(Model model) {
         model.addAttribute("user", new UserDTO());
         return "user/editUser";
     }
 
-    @RequestMapping(path = {"/user/edit"}, method = RequestMethod.POST)
+    @PostMapping(path = {"/user/edit"})
     public String editUser(@ModelAttribute("user") @Valid UserDTO userDTO,
                            BindingResult result,
                            @AuthenticationPrincipal CurrentUser customUser) {
 
         if (result.hasErrors() ||
-                userInterface.checkIfEmailIsAlreadyUsed(customUser.getUser().getEmail(), userDTO)) {
+                userService.checkIfEmailIsAlreadyUsed(customUser.getUser().getEmail(), userDTO)) {
             return "user/editUser";
         }
         userDTO.setId(customUser.getUser().getId());
-        userInterface.editProfile(userDTO);
+        userService.editProfile(userDTO);
         return "redirect:/user";
     }
 
