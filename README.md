@@ -43,4 +43,5 @@ Still developed as a field to learn new features and tehnologies.
 
 ## Status
 
-Project is: _in progress
+Project is: temporarily suspended. 
+Major refactoring with changing architecture to microservices in plans.
